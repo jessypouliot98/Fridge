@@ -1,12 +1,14 @@
 import uniqid from 'uniqid';
 
-class Model {
+abstract class Model {
 
 	protected _uid = uniqid();
 
 	public get uid() {
 		return this._uid;
 	}
+
+	abstract toText(): string;
 
 }
 

@@ -1,26 +1,26 @@
-import Model from "./Model";
+import Model from './Model';
+import chalk from 'chalk';
 
-export type ingredientDetails = {
-	image?: string,
-	description?: string,
-	origin?: string,
+type ingredientDetails = {
+    name: string,
+    description: string,
 }
 
 class Ingredient extends Model {
 
-	protected _name: string;
-	protected _details: ingredientDetails;
+    public name: ingredientDetails['name'];
+    public description: ingredientDetails['description'];
 
-	public constructor(name: string, details: ingredientDetails = {}) {
-		super();
+    constructor(details: ingredientDetails) {
+        super();
 
-		this._name = name;
-		this._details = details;
-	}
+        this.name = details.name;
+        this.description = details.description;
+    }
 
-	public get name() {
-		return this._name;
-	}
+    public toText(): string {
+        return chalk.underline(this.name);
+    }
 
 }
 

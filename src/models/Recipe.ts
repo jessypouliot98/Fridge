@@ -1,86 +1,63 @@
-import { complex } from 'mathjs';
-import PortionedIngredient from "./PortionedIngredient";
 import Model from "./Model";
-import RecipeStep from './RecipeStep';
+import PortionnedIngredient from "./PortionnedIngredient";
+import chalk from "chalk";
+import Portion from "../valueObjects/Portion";
 
-export type recipeDetails = {
-	rating?: number,
-	description?: string,
+type recipeDetails = {
+    name: string;
+    ingredients: PortionnedIngredient[],
+    servings: number;
 }
 
 class Recipe extends Model {
 
-	protected _name: string;
-	protected _ingredients: PortionedIngredient[];
-	protected _steps: RecipeStep[];
-	protected _servings: number;
-	protected _details: recipeDetails;
+    public name: recipeDetails['name'];
+    public ingredients: recipeDetails['ingredients'];
+    public servings: recipeDetails['servings'];
 
-	public constructor(
-		name: string,
-		servings: number,
-		ingredients: PortionedIngredient[],
-		steps: RecipeStep[],
-		details: recipeDetails = {},
-	) {
-		super();
+    constructor(details: recipeDetails) {
+        super();
 
-		this._name = name;
-		this._servings = servings;
-		this._ingredients = ingredients;
-		this._steps = steps;
-		this._details = details;
-	}
+        this.name = details.name;
+        this.ingredients = details.ingredients;
+        this.servings = details.servings;
+    }
 
-	public get description(): string {
-		return this._details?.description || '';
-	}
+    public scale(...args: Parameters<Portion['scale']>) {
+        const [multiplier] = args;
 
-	public get rating(): number {
-		const r = this._details.rating;
+        return new Recipe({
+            name: this.name,
+            ingredients: this.ingredients.map(ingredient => ingredient.scale(...args)),
+            servings: this.servings * multiplier,
+        });
+    }
 
-		if (!r) {
-			return 0;
-		}
+    public optimize(...args: Parameters<Portion['optimize']>) {
+        return new Recipe({
+            name: this.name,
+            ingredients: this.ingredients.map(ingredient => ingredient.optimize(...args)),
+            servings: this.servings,
+        });
+    }
 
-		return +complex(`${r / 100 * 5}`).format(2);
-	}
+    public convert(...args: Parameters<Portion['convert']>) {
+        return new Recipe({
+            name: this.name,
+            ingredients: this.ingredients.map(ingredient => ingredient.convert(...args)),
+            servings: this.servings,
+        });
+    }
 
-	public serveFor = (servings: number) => {
-		const ratio = servings / this._servings;
-
-		return new Recipe(
-			this._name,
-			servings,
-			this._ingredients.map(ingredient => ingredient.scale(ratio)),
-			this._steps,
-			this._details,
-		);
-	}
-
-	public toString = () => {
-		const ingredients = this._ingredients.map(ingredient => `- ${ingredient.toString()}`);
-
-		const steps = this._steps.map((step, i) => `${i + 1}) ${step.toString()}`);
-
-		return [
-			'===============================================',
-			'',
-			`\t${this._name} (${this._servings} servings)`,
-			`\t${this.description}`,
-			`\t${this.rating} ★`,
-			'',
-			'-----------------------------------------------',
-			'',
-			...ingredients,
-			'',
-			'-----------------------------------------------',
-			'',
-			...steps,
-			'',
-			'===============================================',
-		].join('\n');
-	}
+    public toText() {
+        return [
+            chalk.bold.blue(this.name),
+            ...this.ingredients.map(ingredient => {
+               return `- ${ingredient.toText()}`;
+            }),
+            '',
+        ].join('\n');
+    }
 
 }
 
