@@ -1,7 +1,6 @@
 import Model from './Model';
 import chalk from 'chalk';
 import Ingredient from "./Ingredient";
-import { Unit } from "../enums/Unit";
 import Portion from "../valueObjects/Portion";
 
 class PortionnedIngredient extends Model {
