@@ -1,7 +1,9 @@
+import i18next from '../utils/i18n';
 import Model from './Model';
 import chalk from 'chalk';
 import Ingredient from "./Ingredient";
-import Portion from "../valueObjects/Portion";
+import Portion from "../valueObjects/Portion/Portion";
+import { Unit } from '../enums/Unit';
 
 class PortionnedIngredient extends Model {
 
@@ -28,7 +30,17 @@ class PortionnedIngredient extends Model {
     }
 
     public toText(): string {
-        return chalk.green(`${this.portion.toText()} ${'of'} ${this.ingredient.toText()}`);
+        const i18nPayload = {
+            qty: this.portion.toText(),
+            ingredient: this.ingredient.toText(),
+            count: this.portion.value > 1 ? 2 : 1,
+        };
+
+        const text = this.portion.unit === Unit.unit
+            ? i18next.t('portionedIngredient.unit', i18nPayload)
+            : i18next.t('portionedIngredient.default', i18nPayload);
+
+        return chalk.green(text);
     }
 
 }

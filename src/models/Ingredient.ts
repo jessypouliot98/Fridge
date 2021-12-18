@@ -19,7 +19,9 @@ class Ingredient extends Model {
     }
 
     public toText(): string {
-        return chalk.underline(this.name);
+        const text = this.name;
+
+        return chalk.underline(text);
     }
 
 }

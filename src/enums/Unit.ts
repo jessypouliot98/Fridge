@@ -4,37 +4,34 @@ export enum Unit {
     l = 'liter',
 
     cup = 'cup',
-
-    pinch = 'pinch',
-
+    tsp = 'teaspoon',
+    tbsp = 'tablespoon',
+    
     gal = 'gallon',
-
+    
     /* Weights */
     lb = 'pound',
-
+    
     g = 'gram',
     kg = 'kilogram',
-
+    
     /* Counts */
+    pinch = 'pinch',
     unit = 'unit',
 }
 
-export const isCountPrefered = (unit: Unit): boolean => {
-    return [Unit.pinch, Unit.unit].includes(unit);
+export const PREFER_FULL_UNITS = [Unit.pinch, Unit.unit] as const;
+export const PREFER_FRACTION_UNITS =  [Unit.tsp, Unit.tbsp, Unit.cup, Unit.gal, Unit.lb] as const;
+export const PREFER_DECIMAL_UNITS = [Unit.ml, Unit.l, Unit.g, Unit.kg] as const;
+
+export const isFullPrefered = (unit: Unit): unit is typeof PREFER_FULL_UNITS[number] => {
+    return PREFER_FULL_UNITS.includes(unit as any);
 }
 
-export const isFractionPrefered = (unit: Unit): boolean => {
-    if (isCountPrefered(unit)) {
-        return false;
-    }
-
-    return [Unit.cup, Unit.gal, Unit.lb].includes(unit);
+export const isFractionPrefered = (unit: Unit): unit is typeof PREFER_FRACTION_UNITS[number] => {
+    return PREFER_FRACTION_UNITS.includes(unit as any);
 }
 
-export const isDecimalPrefered = (unit: Unit): boolean => {
-    if (isCountPrefered(unit)) {
-        return false;
-    }
-
-    return !isFractionPrefered(unit);
+export const isDecimalPrefered = (unit: Unit): unit is typeof PREFER_DECIMAL_UNITS[number] => {
+    return PREFER_DECIMAL_UNITS.includes(unit as any);
 }

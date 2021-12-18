@@ -1,8 +1,8 @@
-import { Unit } from './../../../src/enums/Unit';
+import { Unit } from '../../../src/enums/Unit';
 import Model from "../../../src/models/Model";
 import Ingredient from "../../../src/models/Ingredient";
 import PortionnedIngredient from "../../../src/models/PortionnedIngredient";
-import Portion from "../../../src/valueObjects/Portion";
+import Portion from "../../../src/valueObjects/Portion/Portion";
 import Recipe from '../../../src/models/Recipe';
 
 const SERVINGS = 4;
