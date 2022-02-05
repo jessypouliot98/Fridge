@@ -1,9 +1,9 @@
-import { Unit } from '../../../src/enums/Unit';
-import Model from "../../../src/models/Model";
-import Ingredient from "../../../src/models/Ingredient";
-import PortionnedIngredient from "../../../src/models/PortionnedIngredient";
-import Portion from "../../../src/valueObjects/Portion/Portion";
-import Recipe from '../../../src/models/Recipe';
+import { Unit } from '../../../lib/enums/Unit';
+import Model from "../../../lib/models/Model";
+import Ingredient from "../../../lib/models/Ingredient";
+import PortionnedIngredient from "../../../lib/models/PortionnedIngredient";
+import Portion from "../../../lib/Portion/Portion";
+import Recipe from '../../../lib/models/Recipe';
 
 const SERVINGS = 4;
 const PORTIONS = 3;

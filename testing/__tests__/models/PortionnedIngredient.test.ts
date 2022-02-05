@@ -1,9 +1,9 @@
-import { Unit } from '../../../src/enums/Unit';
-import Model from "../../../src/models/Model";
-import Ingredient from "../../../src/models/Ingredient";
-import PortionnedIngredient from "../../../src/models/PortionnedIngredient";
+import { Unit } from '../../../lib/enums/Unit';
+import Model from "../../../lib/models/Model";
+import Ingredient from "../../../lib/models/Ingredient";
+import PortionnedIngredient from "../../../lib/models/PortionnedIngredient";
 import chalk from "chalk";
-import Portion from "../../../src/valueObjects/Portion/Portion";
+import Portion from "../../../lib/Portion/Portion";
 
 jest.mock('chalk', () => ({
 	underline: jest.fn().mockImplementation((v: string) => v),

@@ -1,4 +1,4 @@
-import Model from "../../../src/models/Model";
+import Model from "../../../lib/models/Model";
 
 class Test extends Model {
 	public toText() {
