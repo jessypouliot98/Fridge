@@ -1,5 +1,5 @@
-import { Unit } from "../../../../lib/enums/Unit";
 import Portion from "../../../../lib/Portion/Portion";
+import { Unit } from "../../../../lib/enums/Unit";
 
 describe('Portion', () => {
 	let portion: Portion;

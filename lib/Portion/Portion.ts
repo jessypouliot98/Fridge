@@ -1,7 +1,6 @@
-import i18next from '../../utils/i18n';
-import { isFullPrefered } from '../../enums/Unit';
 import * as math from "mathjs";
-import { isFractionPrefered, Unit } from "../../enums/Unit";
+import { isFractionPrefered, isFullPrefered, Unit } from "../enums/Unit";
+import i18next from "../utils/i18n";
 import optimize from './optimize';
 
 const MAX_DENOMINATOR = 10;

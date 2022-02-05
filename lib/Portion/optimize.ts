@@ -1,4 +1,4 @@
-import { Unit } from "../../enums/Unit";
+import { Unit } from "../enums/Unit";
 import Portion from "./Portion";
 
 export const optimizeMl = (portion: Portion) => {
