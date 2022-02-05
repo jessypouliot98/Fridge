@@ -10,6 +10,11 @@ jest.mock('chalk', () => ({
 	green: jest.fn().mockImplementation((v: string) => v),
 }));
 
+const getPortionnedIngredient = (name: string, qty: number, unit: Unit) => new PortionnedIngredient(
+	new Ingredient({ name, description: 'Test description' }),
+	new Portion(qty, unit),
+);
+
 describe('PortionnedIngredient', () => {
 	let ingredient: Ingredient;
 	let portion: Portion;
@@ -68,7 +73,12 @@ describe('PortionnedIngredient', () => {
 
 	describe('toText', () => {
 		it('returns a string value with the portion and ingredient', () => {
-			expect(portionnedIngredient.toText()).toBe('3 unit of Test');
+			expect(portionnedIngredient.toText()).toBe('3 Tests');
+			expect(getPortionnedIngredient('Apple juice', 2, Unit.ml).toText()).toBe('2ml of Apple juice');
+			expect(getPortionnedIngredient('Red bell pepper', 1, Unit.unit).toText()).toBe('1 Red bell pepper');
+			expect(getPortionnedIngredient('Flour', 250, Unit.g).toText()).toBe('250g of Flour');
+			expect(getPortionnedIngredient('Granulated sugar', 1/2, Unit.cup).toText()).toBe('1/2cup of Granulated sugar');
+			expect(getPortionnedIngredient('Kosher salt', 3, Unit.pinch).toText()).toBe('3pinches of Kosher salt');
 			expect(chalk.green).toBeCalled();
 		});
 	});

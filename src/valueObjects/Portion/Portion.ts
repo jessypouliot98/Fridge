@@ -53,7 +53,7 @@ class Portion {
                 }
             }
             
-            return `${v} ${unitText}`;
+            return [v, unitText].join('');
         }
 
         if (isFullPrefered(this.unit)) {
@@ -61,10 +61,10 @@ class Portion {
                 return `${Math.round(this.value)}`;
             }
             
-            return `${Math.round(this.value)} ${unitText}`;
+            return [Math.round(this.value), unitText].join('');
         }
 
-        return `${parseFloat(this.value.toFixed(MAX_DECIMAL_POINTS))} ${unitText}`;
+        return [parseFloat(this.value.toFixed(MAX_DECIMAL_POINTS)), unitText].join('');
     }
 
 }
