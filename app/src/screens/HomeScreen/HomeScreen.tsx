@@ -1,14 +1,17 @@
 import React from 'react';
-import {View, Text} from "react-native";
+import { View } from "react-native";
 import { ScreenFC } from "../types";
-import {RatioContainer} from "../../components/RatioContainer/RatioContainer";
+import Button from "../../components/Button/Button";
+import { RecipeScreen } from "../index";
 
-const HomeScreen: ScreenFC = () => {
+const HomeScreen: ScreenFC = (props) => {
+  const { navigation } = props;
+
   return (
     <View>
-      <RatioContainer ratio={[16,9]}>
-        <Text>Hello world</Text>
-      </RatioContainer>
+      <Button onPress={() => navigation.navigate(RecipeScreen.id)}>
+        Open Recipe
+      </Button>
     </View>
   );
 }

@@ -10,22 +10,31 @@ const { HomeScreen } = screens;
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const getStackNavigator = () => {
+    return (
+      <Stack.Navigator
+        initialRouteName={HomeScreen.id}
+      >
+        {Object.values(screens as Record<string, ScreenFC>).map((Screen) => (
+          <Stack.Screen
+            key={Screen.id}
+            name={Screen.id}
+          >
+            {(props) => (
+              <TailwindProvider utilities={utilities}>
+                <Screen {...props} />
+              </TailwindProvider>
+            )}
+          </Stack.Screen>
+        ))}
+      </Stack.Navigator>
+    );
+  }
+
   return (
-    <TailwindProvider utilities={utilities}>
-      <NavigationContainer>
-
-        <Stack.Navigator
-          initialRouteName={HomeScreen.id}
-        >
-          {Object.values(screens as Record<string, ScreenFC>).map((Screen) => {
-            return (
-              <Stack.Screen key={Screen.id} name={Screen.id} component={Screen as any} />
-            )
-          })}
-        </Stack.Navigator>
-
-      </NavigationContainer>
-    </TailwindProvider>
+    <NavigationContainer>
+      {getStackNavigator()}
+    </NavigationContainer>
   );
 };
 
