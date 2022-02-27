@@ -1,7 +1,7 @@
 import Model from "./Model";
 import PortionnedIngredient from "./PortionnedIngredient";
 import chalk from "chalk";
-import Portion from "../valueObjects/Portion/Portion";
+import Portion from "../Portion/Portion";
 
 type recipeDetails = {
     name: string;

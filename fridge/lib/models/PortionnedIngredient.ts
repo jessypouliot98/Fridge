@@ -2,8 +2,8 @@ import i18next from '../utils/i18n';
 import Model from './Model';
 import chalk from 'chalk';
 import Ingredient from "./Ingredient";
-import Portion from "../valueObjects/Portion/Portion";
 import { Unit } from '../enums/Unit';
+import Portion from "../Portion/Portion";
 
 class PortionnedIngredient extends Model {
 
