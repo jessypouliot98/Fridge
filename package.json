@@ -1,0 +1,36 @@
+{
+  "name": "fridge",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "[APP]": "",
+    "-----QUICK MENU-----": "",
+    "app": "npm-run-all --parallel app:start app:tailwind",
+    "app:start": "npm run app:start:dev",
+    "app:android": "npm run app:android:dev",
+    "app:ios": "npm run app:ios:dev",
+    "app:tailwind": "npm run app:tailwind:dev",
+    "-----DEV MENU-----": "",
+    "app:start:dev": "cd app && npm run start",
+    "app:android:dev": "cd app && npm run android",
+    "app:ios:dev": "cd app && npm run ios",
+    "app:tailwind:dev": "cd app && npm run tailwind:dev",
+    "-----PROD MENU-----": "",
+    "[FRIDGE]": "",
+    "[WEB]": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessypouliot98/Fridge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessypouliot98/Fridge/issues"
+  },
+  "homepage": "https://github.com/jessypouliot98/Fridge#readme",
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "npm-run-all": "^4.1.5"
+  }
+}
