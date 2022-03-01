@@ -2,6 +2,7 @@
   "name": "fridge",
   "version": "1.0.0",
   "description": "",
+  "private": "true",
   "workspaces": {
     "packages": [
       "packages/*",
@@ -11,7 +12,7 @@
   },
   "scripts": {
     "-----[GENERAL]-----": "",
-    "reinstall": "npm install && lerna bootstrap && npm run build",
+    "reinstall": "yarn install && lerna bootstrap && yarn build",
     "build": "lerna run build",
     "test": "lerna run --parallel test",
     "-----[APP]-----": "",
