@@ -1,5 +1,5 @@
-import Portion from "../../../../lib/Portion/Portion";
-import { Unit } from "../../../../lib/enums/Unit";
+import Portion from "../../../Portion/Portion";
+import { Unit } from "../../../enums/Unit";
 
 describe('Portion', () => {
 	let portion: Portion;
@@ -24,7 +24,7 @@ describe('Portion', () => {
 			expect(scaledPortion).toBeInstanceOf(Portion);
 			expect(scaledPortion).not.toBe(portion);
 		});
-		
+
 		it.each([
 			[-1, -2],
 			[1/2, 1],

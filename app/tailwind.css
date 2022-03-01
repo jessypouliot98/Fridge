@@ -128,16 +128,6 @@
   background-color: rgb(254 226 226 / var(--tw-bg-opacity))
 }
 
-.bg-red-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(127 29 29 / var(--tw-bg-opacity))
-}
-
-.bg-red-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(153 27 27 / var(--tw-bg-opacity))
-}
-
 .p-1 {
   padding: 0.25rem
 }

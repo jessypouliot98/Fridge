@@ -4,9 +4,15 @@ import {ScreenFC, withScreen} from "../utils";
 import IngredientList from "../../components/IngredientList/IngredientList";
 import IngredientListItem from "../../components/IngredientListItem/IngredientListItem";
 import {useTailwind} from "tailwind-rn/dist";
+import {useRootSelector} from "../../hooks";
+import {selectRecipeList} from "../../store/recipe/selectors";
 
 const RecipeScreen: ScreenFC = () => {
   const tailwind = useTailwind();
+  const recipes = useRootSelector(selectRecipeList());
+  const recipe = recipes[0];
+
+  console.log(recipe)
 
   return (
     <View>

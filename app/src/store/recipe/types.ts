@@ -1,4 +1,4 @@
-type Recipe = Record<string, any>;
+import { Recipe } from "fridge/lib";
 
 export type RecipeState = {
   list: Recipe[],

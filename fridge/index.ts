@@ -1,9 +1,9 @@
-import Ingredient from "./lib/models/Ingredient";
-import { Unit } from "./lib/enums/Unit";
-import PortionnedIngredient from "./lib/models/PortionnedIngredient";
-import Recipe from "./lib/models/Recipe";
-import './lib/utils/i18n';
-import Portion from "./lib/Portion/Portion";
+import Ingredient from "./src/models/Ingredient";
+import { Unit } from "./src/enums/Unit";
+import PortionnedIngredient from "./src/models/PortionnedIngredient";
+import Recipe from "./src/models/Recipe";
+import './src/utils/i18n';
+import Portion from "./src/Portion/Portion";
 
 
 const ingredients = {

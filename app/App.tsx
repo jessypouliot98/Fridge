@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as screens from './src/screens';
 import * as modals from './src/modals';
 import { navigationRef } from "./src/utils/navigation";
+import {Provider} from "react-redux";
+import store from "./src/store";
 
 const { HomeScreen } = screens;
 const Stack = createNativeStackNavigator();
@@ -52,16 +54,18 @@ const App = () => {
   }
 
   return (
-    <TailwindProvider utilities={utilities}>
-      <NavigationContainer ref={navigationRef}>
-        <Stack.Navigator
-          initialRouteName={HomeScreen.id}
-        >
-          {getStackModals()}
-          {getStackScreens()}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </TailwindProvider>
+    <Provider store={store}>
+      <TailwindProvider utilities={utilities}>
+        <NavigationContainer ref={navigationRef}>
+          <Stack.Navigator
+            initialRouteName={HomeScreen.id}
+          >
+            {getStackModals()}
+            {getStackScreens()}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </TailwindProvider>
+    </Provider>
   );
 };
 

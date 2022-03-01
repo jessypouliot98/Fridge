@@ -2,23 +2,19 @@
   "name": "fridge",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "/lib"
+  ],
   "scripts": {
     "start": "ts-node index.ts",
+    "build": "tsc",
     "test": "jest"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "@babel/preset-typescript": "^7.16.5",
-    "@types/jest": "^27.0.3",
-    "@types/uniqid": "^5.3.1",
-    "jest": "^27.4.5",
-    "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
-  },
   "dependencies": {
     "chalk": "^4.1.2",
     "i18next": "^21.6.2",

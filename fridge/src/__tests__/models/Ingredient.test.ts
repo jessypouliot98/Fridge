@@ -1,5 +1,5 @@
-import Model from "../../../lib/models/Model";
-import Ingredient from "../../../lib/models/Ingredient";
+import Model from "../../models/Model";
+import Ingredient from "../../models/Ingredient";
 import chalk from "chalk";
 
 jest.mock('chalk', () => ({

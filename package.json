@@ -10,6 +10,8 @@
     "app:android": "npm run app:android:dev",
     "app:ios": "npm run app:ios:dev",
     "app:tailwind": "npm run app:tailwind:dev",
+    "-----BUILD MENU-----": "",
+    "build": "lerna run build",
     "-----DEV MENU-----": "",
     "app:start:dev": "cd app && npm run start",
     "app:android:dev": "cd app && npm run android",
