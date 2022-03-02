@@ -18,7 +18,7 @@ const IngredientListItem: React.FC<IngredientListItemProps> = (props) => {
   }
 
   const openIngredientDetails = () => {
-    IngredientDetailsModal.show({ ingredient });
+    IngredientDetailsModal.open({ ingredient });
   };
 
   const getIngredientText = () => (

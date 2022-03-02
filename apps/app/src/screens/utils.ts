@@ -1,24 +1,34 @@
-import React from 'react';
-import { getStaticProps, NavigationFC } from "../utils/navigation";
+import { getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps } from "../utils/navigation";
+import React from "react";
 
-export type ScreenFC<P extends {} = {}> = NavigationFC<P>;
+export type ScreenFC<P = never> = NavigationFC<P>;
 
-export type ScreenSFCStatic<P extends {} = {}> = { };
+export type ScreenNavigateFunction<P = never> = P extends P ? (props: RouteProps<P>) => void : () => void;
 
-export type ScreenSFC<P> = ScreenFC<P> & ScreenSFCStatic<P>;
+export type ScreenSFCStatic<P = never> = NavigationFCStatic & {
+  navigate: ScreenNavigateFunction<P>;
+};
 
-export const withScreen = <P = any>(Component: ScreenFC<P>): ScreenSFC<P> => {
+export type ScreenSFC<P = never> = ScreenFC<P> & ScreenSFCStatic<P>;
+
+export const withScreen = <P>(Component: ScreenFC<P>, statics: NavigationFCStatic): ScreenSFC<P> => {
+  const { route } = statics;
   const staticProps = getStaticProps(Component);
 
-  const SuperComponent: ScreenSFC<P> = ({ children, ...props }) => {
+  const SuperComponent: ScreenSFC<P> = (({ children, ...props }) => {
     return React.createElement(
       Component,
       props as any,
       children
     );
-  }
+  }) as any;
 
-  SuperComponent.id = Component.id;
+  SuperComponent.route = route;
+  SuperComponent.navigate = (props) => {
+    if (navigationRef.isReady()) {
+      (navigationRef.navigate as any)(route, props);
+    }
+  };
 
   staticProps.forEach(([key, value]) => {
     SuperComponent[key] = value;
@@ -26,3 +36,4 @@ export const withScreen = <P = any>(Component: ScreenFC<P>): ScreenSFC<P> => {
 
   return SuperComponent;
 };
+

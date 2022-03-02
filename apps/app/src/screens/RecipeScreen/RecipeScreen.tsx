@@ -25,6 +25,4 @@ const RecipeScreen: ScreenFC = () => {
   );
 }
 
-RecipeScreen.id = 'RecipeScreen';
-
-export default withScreen(RecipeScreen);
+export default withScreen(RecipeScreen, { route: 'RecipeScreen' });

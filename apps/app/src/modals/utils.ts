@@ -1,36 +1,43 @@
-import { getStaticProps, NavigationFC, navigationRef } from "../utils/navigation";
+import {
+  getStaticProps,
+  NavigationFC,
+  NavigationFCStatic,
+  navigationRef,
+  RouteProps
+} from "../utils/navigation";
 import React from "react";
 
-export type ModalFC<P extends {} = {}> = NavigationFC<P>;
+export type ModalFC<P = never> = NavigationFC<P>;
 
-export type modalShowFunction<P> = (props: P) => void;
-export type modalHideFunction = () => void;
+export type ModalOpenFunction<P = never> = P extends P ? (props: RouteProps<P>) => void : () => void;
+export type ModalCloseFunction = () => void;
 
-export type ModalSFCStatic<P extends {} = {}> = {
-  show: modalShowFunction<P>;
-  hide: modalHideFunction;
+export type ModalSFCStatic<P = never> = NavigationFCStatic & {
+  open: ModalOpenFunction<P>;
+  close: ModalCloseFunction;
 };
 
-export type ModalSFC<P> = ModalFC<P> & ModalSFCStatic<P>;
+export type ModalSFC<P = never> = ModalFC<P> & ModalSFCStatic<P>;
 
-export const withModal = <P = any>(Component: ModalFC<P>): ModalSFC<P> => {
+export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic): ModalSFC<P> => {
+  const { route } = statics;
   const staticProps = getStaticProps(Component);
 
-  const SuperComponent: ModalSFC<P> = ({ children, ...props }) => {
+  const SuperComponent: ModalSFC<P> = (({ children, ...props }) => {
     return React.createElement(
       Component,
       props as any,
       children
     );
-  }
+  }) as any;
 
-  SuperComponent.id = Component.id;
-  SuperComponent.show = (props) => {
+  SuperComponent.route = route;
+  SuperComponent.open = (props) => {
     if (navigationRef.isReady()) {
-      (navigationRef.navigate as any)(Component.id, props);
+      (navigationRef.navigate as any)(route, props);
     }
   };
-  SuperComponent.hide = () => {
+  SuperComponent.close = () => {
     if (navigationRef.isReady()) {
       navigationRef.goBack();
     }

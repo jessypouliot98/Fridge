@@ -10,16 +10,14 @@ const HomeScreen: ScreenFC = (props) => {
 
   return (
     <View>
-      <Button onPress={() => navigation.navigate(RecipeScreen.id)} type={'primary'}>
+      <Button onPress={() => RecipeScreen.navigate()} type={'primary'}>
         Open Recipe
       </Button>
-      <Button onPress={() => navigation.navigate(AlertModal.id)} type={'primary'}>
+      <Button onPress={() => AlertModal.open()} type={'primary'}>
         Open Alert Modal
       </Button>
     </View>
   );
 }
 
-HomeScreen.id = 'HomeScreen';
-
-export default withScreen(HomeScreen);
+export default withScreen(HomeScreen, { route: 'HomeScreen' });

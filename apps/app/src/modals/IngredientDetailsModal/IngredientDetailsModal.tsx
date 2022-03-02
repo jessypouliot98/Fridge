@@ -3,7 +3,7 @@ import Backdrop from "../../components/Backdrop/Backdrop";
 import React from "react";
 import { Text, View } from "react-native";
 import { useTailwind } from "tailwind-rn/dist";
-import ModalCard from "../ModalCard/ModalCard";
+import ModalCard from "../../components/ModalCard/ModalCard";
 
 export type IngredientDetailsModalProps = {
   ingredient: {
@@ -33,6 +33,4 @@ const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = (props) => 
   )
 }
 
-IngredientDetailsModal.id = 'IngredientDetailsModal';
-
-export default withModal(IngredientDetailsModal);
+export default withModal(IngredientDetailsModal, { route: 'IngredientDetailsModal' });

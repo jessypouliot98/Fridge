@@ -8,6 +8,8 @@ import * as modals from './src/modals';
 import { navigationRef } from "./src/utils/navigation";
 import {Provider} from "react-redux";
 import store from "./src/store";
+import {ScreenSFC} from "./src/screens/utils";
+import {ModalSFC} from "./src/modals/utils";
 
 const { HomeScreen } = screens;
 const Stack = createNativeStackNavigator();
@@ -16,10 +18,10 @@ const App = () => {
   const getStackScreens = () => {
     return (
       <Stack.Group screenOptions={{ presentation: 'transparentModal' }}>
-        {Object.values(screens).map((Screen) => (
+        {Object.values(screens as Record<string, ScreenSFC>).map((Screen) => (
           <Stack.Screen
-            key={Screen.id}
-            name={Screen.id}
+            key={Screen.route}
+            name={Screen.route}
           >
             {(props) => (
               <Screen {...props} {...(props.route.params as any || {})}/>
@@ -39,10 +41,10 @@ const App = () => {
           statusBarStyle: 'dark',
         }}
       >
-        {Object.values(modals).map((Modal) => (
+        {Object.values(modals as Record<string, ModalSFC>).map((Modal) => (
           <Stack.Screen
-            key={Modal.id}
-            name={Modal.id}
+            key={Modal.route}
+            name={Modal.route}
           >
             {(props) => (
               <Modal {...props} {...(props.route.params as any || {})}/>
@@ -58,7 +60,7 @@ const App = () => {
       <TailwindProvider utilities={utilities}>
         <NavigationContainer ref={navigationRef}>
           <Stack.Navigator
-            initialRouteName={HomeScreen.id}
+            initialRouteName={HomeScreen.route}
           >
             {getStackModals()}
             {getStackScreens()}

@@ -18,6 +18,4 @@ const AlertModal: ModalFC = (props) => {
   )
 }
 
-AlertModal.id = 'AlertModal';
-
-export default withModal(AlertModal);
+export default withModal(AlertModal, { route: 'AlertModal' });

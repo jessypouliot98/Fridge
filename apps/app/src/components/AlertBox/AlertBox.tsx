@@ -2,7 +2,7 @@ import React from "react";
 import {GestureResponderEvent, StyleProp, Text, View, ViewStyle} from "react-native";
 import {useTailwind} from "tailwind-rn/dist";
 import Button from "../Button/Button";
-import ModalCard from "../../modals/ModalCard/ModalCard";
+import ModalCard from "../ModalCard/ModalCard";
 
 type AlertBoxProps = {
   style?: StyleProp<ViewStyle>
