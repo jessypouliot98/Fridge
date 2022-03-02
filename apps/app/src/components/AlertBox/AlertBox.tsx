@@ -37,7 +37,7 @@ const AlertBox: React.FC<AlertBoxProps> = (props) => {
           </View>
 
           <View style={tailwind('p-1')}>
-            <Button onPress={onCancel} type={'gray'}>
+            <Button onPress={onCancel} type={'outline-gray'}>
               Cancel
             </Button>
           </View>
