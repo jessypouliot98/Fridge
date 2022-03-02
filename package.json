@@ -7,8 +7,7 @@
     "packages": [
       "packages/*",
       "apps/*"
-    ],
-    "nohoist": ["**/react-native", "**/react-native/**"]
+    ]
   },
   "scripts": {
     "-----[GENERAL]-----": "",
@@ -18,7 +17,9 @@
     "-----[APP]-----": "",
     "app:start": "cd apps/app && npm run app:start",
     "app:android": "cd apps/app && npm run app:android",
-    "app:ios": "cd apps/app && npm run app:ios"
+    "app:ios": "cd apps/app && npm run app:ios",
+    "-----[WEB]-----": "",
+    "web:start": "cd apps/web && npm run web:start"
   },
   "repository": {
     "type": "git",
@@ -30,30 +31,7 @@
     "url": "https://github.com/jessypouliot98/Fridge/issues"
   },
   "homepage": "https://github.com/jessypouliot98/Fridge#readme",
-  "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/runtime": "^7.12.5",
-    "@react-native-community/eslint-config": "^2.0.0",
-    "@types/jest": "^26.0.23",
-    "@types/react-native": "^0.66.15",
-    "@types/react-test-renderer": "^17.0.1",
-    "@types/uniqid": "^5.3.2",
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
-    "babel-jest": "^26.6.3",
-    "concurrently": "^7.0.0",
-    "eslint": "^7.14.0",
-    "jest": "^26.6.3",
-    "lerna": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.66.2",
-    "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.7",
-    "react-test-renderer": "17.0.2",
-    "tailwindcss": "^3.0.23",
-    "typescript": "^4.4.4"
-  },
   "dependencies": {
-    "@fridge/app": "file:apps/app",
-    "@fridge/fridge": "file:packages/fridge"
+    "lerna": "^4.0.0"
   }
 }

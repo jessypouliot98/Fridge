@@ -9,7 +9,6 @@
     "/lib"
   ],
   "scripts": {
-    "reinstall": "npm install",
     "start": "ts-node index.ts",
     "build": "tsc",
     "test": "jest"
@@ -22,5 +21,8 @@
     "mathjs": "^9.5.0",
     "slugify": "^1.6.0",
     "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
   }
 }
