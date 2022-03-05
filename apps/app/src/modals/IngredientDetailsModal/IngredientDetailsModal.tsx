@@ -4,11 +4,10 @@ import React from "react";
 import { Text, View } from "react-native";
 import { useTailwind } from "tailwind-rn/dist";
 import ModalCard from "../../components/ModalCard/ModalCard";
+import {Ingredient} from "@fridge/fridge";
 
 export type IngredientDetailsModalProps = {
-  ingredient: {
-    name: string,
-  }
+  ingredient: Ingredient
 }
 
 const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = ({ navigation, route }) => {
@@ -25,7 +24,7 @@ const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = ({ navigati
         </View>
 
         <View>
-          <Text>Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. </Text>
+          <Text>{ingredient.description}</Text>
         </View>
 
       </ModalCard>

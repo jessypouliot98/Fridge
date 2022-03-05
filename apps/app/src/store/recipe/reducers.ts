@@ -1,10 +1,39 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 
 import { RecipeAction, RecipeState } from './types';
+import {Recipe, PortionnedIngredient, Unit, Portion, Ingredient} from "@fridge/fridge";
+
+const foobarRecipe = new Recipe({
+  name: 'Foobar',
+  servings: 2,
+  ingredients: [
+    new PortionnedIngredient(
+      new Ingredient({
+        name: 'Potato',
+        description: 'Potato',
+      }),
+      new Portion(2, Unit.unit),
+    ),
+  ],
+});
+
+const barbazRecipe = new Recipe({
+  name: 'Barbaz',
+  servings: 2,
+  ingredients: [
+    new PortionnedIngredient(
+      new Ingredient({
+        name: 'Linguini',
+        description: 'Pasta',
+      }),
+      new Portion(500, Unit.g),
+    ),
+  ],
+});
 
 export const initialState: RecipeState = {
   isLoading: false,
-  list: [],
+  list: [foobarRecipe, barbazRecipe],
 };
 
 export const setRecipeLoading = createAction<RecipeState['isLoading']>(RecipeAction.SET_RECIPE_LOADING);

@@ -3,39 +3,31 @@ import {StyleProp, Text, TouchableWithoutFeedback, View, ViewStyle} from "react-
 import {useTailwind} from "tailwind-rn/dist";
 import CheckBox from "../CheckBox/CheckBox";
 import {IngredientDetailsModal} from "../../modals";
+import {PortionnedIngredient} from "@fridge/fridge";
 
 type IngredientListItemProps = {
   style?: StyleProp<ViewStyle>,
+  portionnedIngredient: PortionnedIngredient,
 }
 
 const IngredientListItem: React.FC<IngredientListItemProps> = (props) => {
-  const { style } = props;
+  const { style, portionnedIngredient } = props;
   const tailwind = useTailwind();
 
-  const ingredient = {
-    qty: '12oz of',
-    name: 'Mashed potatos',
-  }
-
   const openIngredientDetails = () => {
-    IngredientDetailsModal.open({ ingredient });
+    IngredientDetailsModal.open({ ingredient: portionnedIngredient.ingredient });
   };
-
-  const getIngredientText = () => (
-    <Text>
-      <Text>{`${ingredient.qty} `}</Text>
-      <TouchableWithoutFeedback onPress={openIngredientDetails}>
-        <Text style={tailwind('text-blue-500 border bg-red-100')}>
-          {ingredient.name}
-        </Text>
-      </TouchableWithoutFeedback>
-    </Text>
-  )
 
   return (
     <View style={[tailwind('w-full bg-white p-4 flex flex-row'), style]}>
       <View style={tailwind('flex-1')}>
-        {getIngredientText()}
+        <Text>
+          <TouchableWithoutFeedback onPress={openIngredientDetails}>
+            <Text style={tailwind('text-blue-500 border bg-red-100')}>
+              {portionnedIngredient.toText()}
+            </Text>
+          </TouchableWithoutFeedback>
+        </Text>
       </View>
       <View style={tailwind('')}>
         <CheckBox />

@@ -14,8 +14,9 @@
   },
   "scripts": {
     "-----[GENERAL]-----": "",
+    "bootstrap": "yarn install && lerna bootstrap && yarn build",
     "uninstall": "rimraf ./packages/**/node_modules && rimraf ./apps/**/node_modules && rimraf ./**/tsconfig.tsbuildinfo && rimraf ./**/lib",
-    "reinstall": "yarn uninstall && yarn install && lerna bootstrap && yarn build",
+    "reinstall": "yarn uninstall && yarn bootstrap",
     "build": "lerna run build",
     "test": "lerna run --parallel test",
     "-----[APP]-----": "",
@@ -38,5 +39,8 @@
   "devDependencies": {
     "lerna": "^4.0.0",
     "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "uniqid": "^5.4.0"
   }
 }

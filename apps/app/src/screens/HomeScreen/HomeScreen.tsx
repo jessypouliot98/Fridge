@@ -4,16 +4,12 @@ import {ScreenFC, withScreen} from "../utils";
 import Button from "../../components/Button/Button";
 import { RecipeScreen } from "../index";
 import { AlertModal } from "../../modals";
+import RecipeList from "../../components/RecipeList/RecipeList";
 
 const HomeScreen: ScreenFC = ({ navigation }) => {
   return (
     <View>
-      <Button onPress={() => RecipeScreen.navigate()} type={'primary'}>
-        Open Recipe
-      </Button>
-      <Button onPress={() => AlertModal.open()} type={'primary'}>
-        Open Alert Modal
-      </Button>
+      <RecipeList />
     </View>
   );
 }

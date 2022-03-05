@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const getStackScreens = () => {
     return (
-      <Stack.Group screenOptions={{ presentation: 'transparentModal' }}>
+      <Stack.Group>
         {Object.values(screens as Record<string, ScreenSFC>).map((Screen) => (
           <Stack.Screen
             key={Screen.route}
@@ -56,8 +56,8 @@ const App = () => {
           <Stack.Navigator
             initialRouteName={HomeScreen.route}
           >
-            {getStackModals()}
             {getStackScreens()}
+            {getStackModals()}
           </Stack.Navigator>
         </NavigationContainer>
       </TailwindProvider>

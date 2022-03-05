@@ -6,19 +6,27 @@ import IngredientListItem from "../../components/IngredientListItem/IngredientLi
 import {useTailwind} from "tailwind-rn/dist";
 import {useRootSelector} from "../../hooks";
 import {selectRecipeList} from "../../store/recipe/selectors";
+import {Recipe} from "@fridge/fridge";
 
-const RecipeScreen: ScreenFC = () => {
+export type RecipeScreenProps = {
+  recipe: Recipe,
+}
+
+const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ route }) => {
+  const { recipe } = route.params;
   const tailwind = useTailwind();
-  const recipes = useRootSelector(selectRecipeList());
-  const recipe = recipes[0];
 
   console.log(recipe || 'No recipe')
 
   return (
     <View>
       <IngredientList>
-        {[1,2,3,4].map((id) => (
-          <IngredientListItem key={id} style={tailwind('border-y border-gray-300')} />
+        {recipe.ingredients.map((portionnedIngredient) => (
+          <IngredientListItem
+            key={portionnedIngredient.uid}
+            style={tailwind('border-y border-gray-300')}
+            portionnedIngredient={portionnedIngredient}
+          />
         ))}
       </IngredientList>
     </View>

@@ -35,6 +35,7 @@ const blacklist = require("metro-config/src/defaults/exclusionList");
 const getWorkspaces = require("get-yarn-workspaces");
 const path = require("path");
 
+// https://bit.ly/2LHHTP0
 function getConfig(from, options = {}) {
   const workspaces = getWorkspaces(from);
 
@@ -47,6 +48,8 @@ function getConfig(from, options = {}) {
       options.nodeModules || path.resolve(from, "../../", "node_modules")
     ].concat(workspaces);
   }
+
+  console.log(getProjectRoots())
 
   const config = {
     watchFolders: getProjectRoots(),
@@ -63,7 +66,15 @@ function getConfig(from, options = {}) {
       extraNodeModules: {
         "react-native": path.resolve(from, "node_modules/react-native")
       }
-    }
+    },
+    transformer: {
+      getTransformOptions: async () => ({
+        transform: {
+          experimentalImportSupport: false,
+          inlineRequires: true,
+        },
+      }),
+    },
   };
 
   return config;

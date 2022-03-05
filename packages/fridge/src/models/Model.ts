@@ -3,7 +3,7 @@
 let i = 0;
 
 const uniqid = () => {
-	return ++i;
+	return `${new Date().getTime()}-${++i}`;
 }
 
 abstract class Model {
