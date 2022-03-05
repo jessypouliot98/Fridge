@@ -1,7 +1,8 @@
 import {Recipe} from "@fridge/fridge";
 
 // TODO make this import not fail
-// console.log(Recipe)
+console.log('If recipe is logged, we successfully imported a monorepo dependency !')
+console.log({Recipe})
 
 export type RecipeState = {
   list: Recipe[],

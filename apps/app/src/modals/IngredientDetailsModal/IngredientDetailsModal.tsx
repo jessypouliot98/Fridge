@@ -11,8 +11,8 @@ export type IngredientDetailsModalProps = {
   }
 }
 
-const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = (props) => {
-  const { navigation, ingredient } = props;
+const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = ({ navigation, route }) => {
+  const { ingredient } = route.params;
 
   const tailwind = useTailwind();
 

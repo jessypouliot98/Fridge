@@ -1,5 +1,5 @@
 import React from "react";
-import { createNavigationContainerRef, NavigationContainerRef } from "@react-navigation/native";
+import {createNavigationContainerRef, NavigationContainerRef} from "@react-navigation/native";
 import { RouteProp } from "@react-navigation/core/lib/typescript/src/types";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
@@ -22,6 +22,5 @@ export type NavigationProps<P = never> = {
 export type RouteProps<P = never> = Omit<P, keyof NavigationProps>;
 
 export type NavigationFC<
-  P = never,
-  NP extends NavigationProps = NavigationProps,
-> = React.FC<P>;
+  P = { never },
+> = React.FC<NavigationProps<P>>;

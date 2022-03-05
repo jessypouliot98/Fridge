@@ -5,9 +5,7 @@ import Button from "../../components/Button/Button";
 import { RecipeScreen } from "../index";
 import { AlertModal } from "../../modals";
 
-const HomeScreen: ScreenFC = (props) => {
-  const { navigation } = props;
-
+const HomeScreen: ScreenFC = ({ navigation }) => {
   return (
     <View>
       <Button onPress={() => RecipeScreen.navigate()} type={'primary'}>

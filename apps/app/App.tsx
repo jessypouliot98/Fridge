@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as screens from './src/screens';
 import * as modals from './src/modals';
-import { navigationRef } from "./src/utils/navigation";
+import { navigationRef } from "./src/navigation/navigation";
 import {Provider} from "react-redux";
 import store from "./src/store";
 import {ScreenSFC} from "./src/screens/utils";
@@ -22,11 +22,8 @@ const App = () => {
           <Stack.Screen
             key={Screen.route}
             name={Screen.route}
-          >
-            {(props) => (
-              <Screen {...props} {...(props.route.params as any || {})}/>
-            )}
-          </Stack.Screen>
+            component={Screen}
+          />
         ))}
       </Stack.Group>
     );
@@ -45,11 +42,8 @@ const App = () => {
           <Stack.Screen
             key={Modal.route}
             name={Modal.route}
-          >
-            {(props) => (
-              <Modal {...props} {...(props.route.params as any || {})}/>
-            )}
-          </Stack.Screen>
+            component={Modal}
+          />
         ))}
       </Stack.Group>
     );

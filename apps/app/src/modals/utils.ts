@@ -4,12 +4,12 @@ import {
   NavigationFCStatic,
   navigationRef,
   RouteProps
-} from "../utils/navigation";
+} from "../navigation/navigation";
 import React from "react";
 
 export type ModalFC<P = never> = NavigationFC<P>;
 
-export type ModalOpenFunction<P = never> = P extends P ? (props: RouteProps<P>) => void : () => void;
+export type ModalOpenFunction<P = never> = P extends never ? () => void : (props: RouteProps<P>) => void;
 export type ModalCloseFunction = () => void;
 
 export type ModalSFCStatic<P = never> = NavigationFCStatic & {

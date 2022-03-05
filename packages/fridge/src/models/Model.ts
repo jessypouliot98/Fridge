@@ -1,4 +1,10 @@
-import uniqid from 'uniqid';
+// import uniqid from 'uniqid';
+
+let i = 0;
+
+const uniqid = () => {
+	return ++i;
+}
 
 abstract class Model {
 

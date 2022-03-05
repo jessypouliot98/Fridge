@@ -3,9 +3,7 @@ import {ModalFC, withModal} from "../utils";
 import Backdrop from "../../components/Backdrop/Backdrop";
 import AlertBox from "../../components/AlertBox/AlertBox";
 
-const AlertModal: ModalFC = (props) => {
-  const { navigation } = props;
-
+const AlertModal: ModalFC = ({ navigation }) => {
   return (
     <Backdrop onPress={() => navigation.goBack()}>
       <AlertBox

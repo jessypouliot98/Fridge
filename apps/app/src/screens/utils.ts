@@ -1,9 +1,9 @@
-import { getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps } from "../utils/navigation";
+import { getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps } from "../navigation/navigation";
 import React from "react";
 
 export type ScreenFC<P = never> = NavigationFC<P>;
 
-export type ScreenNavigateFunction<P = never> = P extends P ? (props: RouteProps<P>) => void : () => void;
+export type ScreenNavigateFunction<P = never> = P extends never ? () => void : (props: RouteProps<P>) => void;
 
 export type ScreenSFCStatic<P = never> = NavigationFCStatic & {
   navigate: ScreenNavigateFunction<P>;

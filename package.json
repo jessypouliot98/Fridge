@@ -8,11 +8,14 @@
       "packages/*",
       "apps/*"
     ],
-    "nohoist": ["**"]
+    "nohoist": [
+      "**"
+    ]
   },
   "scripts": {
     "-----[GENERAL]-----": "",
-    "reinstall": "yarn install && lerna bootstrap && yarn build",
+    "uninstall": "rimraf ./packages/**/node_modules && rimraf ./apps/**/node_modules && rimraf ./**/tsconfig.tsbuildinfo && rimraf ./**/lib",
+    "reinstall": "yarn uninstall && yarn install && lerna bootstrap && yarn build",
     "build": "lerna run build",
     "test": "lerna run --parallel test",
     "-----[APP]-----": "",
@@ -32,7 +35,8 @@
     "url": "https://github.com/jessypouliot98/Fridge/issues"
   },
   "homepage": "https://github.com/jessypouliot98/Fridge#readme",
-  "dependencies": {
-    "lerna": "^4.0.0"
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "rimraf": "^3.0.2"
   }
 }
