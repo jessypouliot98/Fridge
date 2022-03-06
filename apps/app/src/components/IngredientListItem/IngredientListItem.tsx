@@ -7,15 +7,16 @@ import {PortionnedIngredient} from "@fridge/fridge";
 
 type IngredientListItemProps = {
   style?: StyleProp<ViewStyle>,
-  portionnedIngredient: PortionnedIngredient,
+  ingredient: PortionnedIngredient,
 }
 
 const IngredientListItem: React.FC<IngredientListItemProps> = (props) => {
-  const { style, portionnedIngredient } = props;
+  const { style, ingredient } = props;
+
   const tailwind = useTailwind();
 
   const openIngredientDetails = () => {
-    IngredientDetailsModal.open({ ingredient: portionnedIngredient.ingredient });
+    IngredientDetailsModal.open({ ingredient: ingredient.ingredient });
   };
 
   return (
@@ -24,7 +25,7 @@ const IngredientListItem: React.FC<IngredientListItemProps> = (props) => {
         <Text>
           <TouchableWithoutFeedback onPress={openIngredientDetails}>
             <Text style={tailwind('text-blue-500 border bg-red-100')}>
-              {portionnedIngredient.toText()}
+              {ingredient.toText()}
             </Text>
           </TouchableWithoutFeedback>
         </Text>

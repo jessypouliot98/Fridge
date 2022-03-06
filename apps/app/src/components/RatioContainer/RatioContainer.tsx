@@ -11,7 +11,7 @@ export const getRatio = ([x,y]: RatioType) => {
   return y / x;
 }
 
-export const RatioContainer: React.FC<RatioContainerProps> = (props) => {
+const RatioContainer: React.FC<RatioContainerProps> = (props) => {
   const { children, ratio: ratioRaw, style } = props;
   const ratio = getRatio(ratioRaw);
 
@@ -23,3 +23,5 @@ export const RatioContainer: React.FC<RatioContainerProps> = (props) => {
     </View>
   )
 }
+
+export default RatioContainer;

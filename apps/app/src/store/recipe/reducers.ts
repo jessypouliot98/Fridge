@@ -28,12 +28,22 @@ const barbazRecipe = new Recipe({
       }),
       new Portion(500, Unit.g),
     ),
+    new PortionnedIngredient(
+      new Ingredient({
+        name: 'Potato',
+        description: 'Potato',
+      }),
+      new Portion(2, Unit.unit),
+    ),
   ],
 });
 
 export const initialState: RecipeState = {
   isLoading: false,
-  list: [foobarRecipe, barbazRecipe],
+  list: [
+    foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe,
+    foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe,
+  ],
 };
 
 export const setRecipeLoading = createAction<RecipeState['isLoading']>(RecipeAction.SET_RECIPE_LOADING);

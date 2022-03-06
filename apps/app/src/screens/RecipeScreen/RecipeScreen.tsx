@@ -1,11 +1,9 @@
 import React from 'react';
-import {View} from "react-native";
+import {Text, View} from "react-native";
 import {ScreenFC, withScreen} from "../utils";
 import IngredientList from "../../components/IngredientList/IngredientList";
 import IngredientListItem from "../../components/IngredientListItem/IngredientListItem";
-import {useTailwind} from "tailwind-rn/dist";
-import {useRootSelector} from "../../hooks";
-import {selectRecipeList} from "../../store/recipe/selectors";
+import {useTailwind} from "tailwind-rn";
 import {Recipe} from "@fridge/fridge";
 
 export type RecipeScreenProps = {
@@ -20,12 +18,14 @@ const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ route }) => {
 
   return (
     <View>
-      <IngredientList>
-        {recipe.ingredients.map((portionnedIngredient) => (
+      <Text>{`Name: ${recipe.name}`}</Text>
+      <Text>{`Servings: ${recipe.servings}`}</Text>
+      <IngredientList ingredients={recipe.ingredients}>
+        {recipe.ingredients.map((ingredient) => (
           <IngredientListItem
-            key={portionnedIngredient.uid}
+            key={ingredient.uid}
             style={tailwind('border-y border-gray-300')}
-            portionnedIngredient={portionnedIngredient}
+            ingredient={ingredient}
           />
         ))}
       </IngredientList>

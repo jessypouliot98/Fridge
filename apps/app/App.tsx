@@ -10,6 +10,7 @@ import {Provider} from "react-redux";
 import store from "./src/store";
 import {ScreenSFC} from "./src/screens/utils";
 import {ModalSFC} from "./src/modals/utils";
+import {getTailwindUtilities} from "./src/utils/tailwind";
 
 const { HomeScreen } = screens;
 const Stack = createNativeStackNavigator();
@@ -51,7 +52,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <TailwindProvider utilities={utilities}>
+      <TailwindProvider utilities={getTailwindUtilities()}>
         <NavigationContainer ref={navigationRef}>
           <Stack.Navigator
             initialRouteName={HomeScreen.route}
