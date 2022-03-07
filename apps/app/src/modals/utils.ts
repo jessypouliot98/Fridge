@@ -29,7 +29,10 @@ export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic)
   SuperComponent.permissions = permissions;
   SuperComponent.open = (props) => {
     if (navigationRef.isReady()) {
-      (navigationRef.navigate as any)(route, props);
+      (navigationRef.navigate as any)('ModalStack', {
+        screen: route,
+        params: props,
+      });
     }
   };
   SuperComponent.close = () => {

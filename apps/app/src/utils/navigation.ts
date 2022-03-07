@@ -5,6 +5,17 @@ import {RouteProp} from "@react-navigation/core/lib/typescript/src/types";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
 
+export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boolean, tab?: string }) => (Component: NavigationFCStatic) => {
+  const isPermitted = [
+    (isLoggedIn && Component.permissions.includes(Permissions.GUEST)),
+    (!isLoggedIn && Component.permissions.includes(Permissions.PRIVATE)),
+  ].some(condition => !condition);
+
+  const isInTab = tab ? (Component as any).tab === tab : true;
+
+  return isPermitted && isInTab;
+};
+
 export const getStaticProps = <
   S extends {} = {},
   C extends {} = React.FC,

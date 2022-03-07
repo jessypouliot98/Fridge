@@ -6,6 +6,7 @@ import { useTailwind } from "tailwind-rn/dist";
 import Button from "../../components/Button/Button";
 import SettingScreen from "../SettingScreen/SettingScreen";
 import {Permissions} from "../../utils/permissions";
+import {Tab} from "../../navigation/tabs";
 
 const HomeScreen: ScreenFC = () => {
   const tailwind = useTailwind();
@@ -38,4 +39,5 @@ const HomeScreen: ScreenFC = () => {
 export default withScreen(HomeScreen, {
   route: 'HomeScreen',
   permissions: [Permissions.PUBLIC],
+  tab: Tab.MAIN,
 });

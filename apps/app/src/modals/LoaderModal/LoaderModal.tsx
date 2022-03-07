@@ -3,6 +3,7 @@ import { ModalFC, withModal } from "../utils";
 import { useTailwind } from "tailwind-rn/dist";
 import { ActivityIndicator, View } from "react-native";
 import {Permissions} from "../../utils/permissions";
+import {Tab} from "../../navigation/tabs";
 
 const LoaderModal: ModalFC = () => {
   const tailwind = useTailwind();
@@ -17,4 +18,5 @@ const LoaderModal: ModalFC = () => {
 export default withModal(LoaderModal, {
   route: 'LoaderModal',
   permissions: [Permissions.PUBLIC],
+  tab: Tab.MAIN,
 });

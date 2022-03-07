@@ -6,6 +6,7 @@ import { useTailwind } from "tailwind-rn/dist";
 import ModalCard from "../../components/ModalCard/ModalCard";
 import {Ingredient} from "@fridge/fridge";
 import {Permissions} from "../../utils/permissions";
+import {Tab} from "../../navigation/tabs";
 
 export type IngredientDetailsModalProps = {
   ingredient: Ingredient
@@ -36,4 +37,5 @@ const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = ({ navigati
 export default withModal(IngredientDetailsModal, {
   route: 'IngredientDetailsModal',
   permissions: [Permissions.PUBLIC],
+  tab: Tab.MAIN,
 });

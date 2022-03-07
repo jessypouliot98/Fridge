@@ -1,18 +1,23 @@
 import React from "react";
-import {getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps} from "../utils/navigation";
+import { getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps } from "../utils/navigation";
+import { Tab } from "../navigation/tabs";
 
 export type ScreenFC<P = never> = NavigationFC<P>;
 
 export type ScreenNavigateFunction<P = never> = (props?: RouteProps<P>) => void;
 
-export type ScreenSFCStatic<P = never> = NavigationFCStatic & {
+export type ScreenFCStatic = NavigationFCStatic & {
+  tab: Tab,
+};
+
+export type ScreenSFCStatic<P = never> = ScreenFCStatic & {
   navigate: ScreenNavigateFunction<P>;
 };
 
 export type ScreenSFC<P = never> = ScreenFC<P> & ScreenSFCStatic<P>;
 
-export const withScreen = <P>(Component: ScreenFC<P>, statics: NavigationFCStatic): ScreenSFC<P> => {
-  const { route, permissions } = statics;
+export const withScreen = <P>(Component: ScreenFC<P>, statics: ScreenFCStatic): ScreenSFC<P> => {
+  const { route, permissions, tab } = statics;
   const staticProps = getStaticProps(Component);
 
   const SuperComponent: ScreenSFC<P> = (({ children, ...props }) => {
@@ -25,9 +30,16 @@ export const withScreen = <P>(Component: ScreenFC<P>, statics: NavigationFCStati
 
   SuperComponent.route = route;
   SuperComponent.permissions = permissions;
+  SuperComponent.tab = tab;
   SuperComponent.navigate = (props) => {
     if (navigationRef.isReady()) {
-      (navigationRef.navigate as any)(route, props);
+      (navigationRef.navigate as any)('ScreenStack', {
+        screen: tab,
+        params: {
+          screen: route,
+          params: props,
+        },
+      });
     }
   };
 
