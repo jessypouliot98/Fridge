@@ -1,7 +1,8 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 
-import { RecipeAction, RecipeState } from './types';
+import { RecipeState } from './types';
 import {Recipe, PortionnedIngredient, Unit, Portion, Ingredient} from "@fridge/fridge";
+import {setRecipeList, setRecipeLoading} from "./actions";
 
 const foobarRecipe = new Recipe({
   name: 'Foobar',
@@ -45,9 +46,6 @@ export const initialState: RecipeState = {
     foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe,
   ],
 };
-
-export const setRecipeLoading = createAction<RecipeState['isLoading']>(RecipeAction.SET_RECIPE_LOADING);
-export const setRecipeList = createAction<RecipeState['list']>(RecipeAction.SET_RECIPE_LIST);
 
 const reducer = createReducer(initialState, (builder) => {
   builder

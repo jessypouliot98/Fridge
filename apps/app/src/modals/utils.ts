@@ -9,7 +9,7 @@ import React from "react";
 
 export type ModalFC<P = never> = NavigationFC<P>;
 
-export type ModalOpenFunction<P = never> = P extends never ? () => void : (props: RouteProps<P>) => void;
+export type ModalOpenFunction<P = never> = (props?: RouteProps<P>) => void;
 export type ModalCloseFunction = () => void;
 
 export type ModalSFCStatic<P = never> = NavigationFCStatic & {

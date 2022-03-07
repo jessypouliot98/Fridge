@@ -18,7 +18,11 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const getStackScreens = () => {
     return (
-      <Stack.Group>
+      <Stack.Group
+        screenOptions={{
+          animation: 'slide_from_right',
+        }}
+      >
         {Object.values(screens as Record<string, ScreenSFC>).map((Screen) => (
           <Stack.Screen
             key={Screen.route}
@@ -37,6 +41,7 @@ const App = () => {
           presentation: 'transparentModal',
           headerShown: false,
           statusBarStyle: 'dark',
+          animation: 'fade',
         }}
       >
         {Object.values(modals as Record<string, ModalSFC>).map((Modal) => (

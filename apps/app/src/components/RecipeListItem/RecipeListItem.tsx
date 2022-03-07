@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, ViewStyle, StyleProp, TouchableWithoutFeedback} from "react-native";
+import {View, Text, TouchableWithoutFeedback} from "react-native";
 import {Recipe} from "@fridge/fridge";
 import {RecipeScreen} from "../../screens";
 import RatioContainer from "../RatioContainer/RatioContainer";
@@ -18,7 +18,7 @@ const RecipeListItem: React.FC<RecipeListItemProps> = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => RecipeScreen.navigate({ recipe })}>
       <View style={[
-        tailwind('bg-white rounded-lg overflow-hidden p-1'),
+        tailwind('bg-white rounded-lg overflow-hidden'),
         { elevation: 3 },
         { width: displayMode === 'table' ? '50%' : '100%' },
       ]}>

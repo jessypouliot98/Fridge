@@ -3,14 +3,40 @@ import {ModalFC, withModal} from "../utils";
 import Backdrop from "../../components/Backdrop/Backdrop";
 import AlertBox from "../../components/AlertBox/AlertBox";
 
-const AlertModal: ModalFC = ({ navigation }) => {
+type AlertModalProps = {
+  title: string,
+  description: string,
+  cancelText?: string,
+  confirmText?: string,
+  onCancel?: () => (void | Promise<void>),
+  onConfirm?: () => (void | Promise<void>),
+}
+
+const AlertModal: ModalFC<AlertModalProps> = ({ navigation, route }) => {
+  const {
+    title,
+    description,
+    cancelText,
+    confirmText,
+    onCancel,
+    onConfirm,
+  } = route.params;
+
   return (
     <Backdrop onPress={() => navigation.goBack()}>
       <AlertBox
-        title={'Alert !'}
-        description={'Lorem ipsum dolar sit amet'}
-        onCancel={() => navigation.goBack()}
-        onConfirm={() => navigation.goBack()}
+        title={title}
+        description={description}
+        cancelText={cancelText}
+        confirmText={confirmText}
+        onCancel={async () => {
+          navigation.goBack();
+          onCancel && await onCancel()
+        }}
+        onConfirm={async () => {
+          navigation.goBack()
+          onConfirm && await onConfirm();
+        }}
       />
     </Backdrop>
   )

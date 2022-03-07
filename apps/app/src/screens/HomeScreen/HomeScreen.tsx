@@ -4,6 +4,7 @@ import { ScreenFC, withScreen } from "../utils";
 import RecipeList, {RecipeListProps} from "../../components/RecipeList/RecipeList";
 import { useTailwind } from "tailwind-rn/dist";
 import Button from "../../components/Button/Button";
+import SettingScreen from "../SettingScreen/SettingScreen";
 
 const HomeScreen: ScreenFC = () => {
   const tailwind = useTailwind();
@@ -16,6 +17,11 @@ const HomeScreen: ScreenFC = () => {
 
   return (
     <View style={tailwind('w-full p-2')}>
+      <View style={tailwind('mb-2')}>
+        <Button onPress={() => SettingScreen.navigate()}>
+          Setting page
+        </Button>
+      </View>
       <View style={tailwind('mb-2')}>
         <Button onPress={handleToggleDisplayMode}>
           Toggle display mode

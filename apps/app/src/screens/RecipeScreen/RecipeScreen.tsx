@@ -14,13 +14,11 @@ const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ route }) => {
   const { recipe } = route.params;
   const tailwind = useTailwind();
 
-  console.log(recipe || 'No recipe')
-
   return (
     <View>
       <Text>{`Name: ${recipe.name}`}</Text>
       <Text>{`Servings: ${recipe.servings}`}</Text>
-      <IngredientList ingredients={recipe.ingredients}>
+      <IngredientList>
         {recipe.ingredients.map((ingredient) => (
           <IngredientListItem
             key={ingredient.uid}

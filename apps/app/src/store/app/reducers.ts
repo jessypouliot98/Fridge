@@ -1,14 +1,11 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
-
+import { createReducer } from '@reduxjs/toolkit';
 import { DEFAULT_LOCALE } from './../../utils/constants';
-
-import { AppAction, AppState } from './types';
+import { AppState } from './types';
+import {setAppLocale} from "./actions";
 
 export const initialState: AppState = {
   lang: DEFAULT_LOCALE,
 };
-
-export const setAppLocale = createAction<AppState['lang']>(AppAction.SET_LOCALE);
 
 const reducer = createReducer(initialState, (builder) => {
   builder

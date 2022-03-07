@@ -3,7 +3,7 @@ import React from "react";
 
 export type ScreenFC<P = never> = NavigationFC<P>;
 
-export type ScreenNavigateFunction<P = never> = P extends never ? () => void : (props: RouteProps<P>) => void;
+export type ScreenNavigateFunction<P = never> = (props?: RouteProps<P>) => void;
 
 export type ScreenSFCStatic<P = never> = NavigationFCStatic & {
   navigate: ScreenNavigateFunction<P>;

@@ -13,9 +13,9 @@ export type RecipeListProps = {
 const RecipeList: React.FC<RecipeListProps> = (props) => {
   const { style, displayMode } = props;
 
+  const tailwind = useTailwind();
   const recipes = useRootSelector(selectRecipeList());
 
-  const tailwind = useTailwind();
 
   return (
     <ScrollView
