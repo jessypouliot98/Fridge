@@ -1,5 +1,5 @@
-import { getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps } from "../navigation/navigation";
 import React from "react";
+import {getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps} from "../utils/navigation";
 
 export type ScreenFC<P = never> = NavigationFC<P>;
 
@@ -12,7 +12,7 @@ export type ScreenSFCStatic<P = never> = NavigationFCStatic & {
 export type ScreenSFC<P = never> = ScreenFC<P> & ScreenSFCStatic<P>;
 
 export const withScreen = <P>(Component: ScreenFC<P>, statics: NavigationFCStatic): ScreenSFC<P> => {
-  const { route } = statics;
+  const { route, permissions } = statics;
   const staticProps = getStaticProps(Component);
 
   const SuperComponent: ScreenSFC<P> = (({ children, ...props }) => {
@@ -24,6 +24,7 @@ export const withScreen = <P>(Component: ScreenFC<P>, statics: NavigationFCStati
   }) as any;
 
   SuperComponent.route = route;
+  SuperComponent.permissions = permissions;
   SuperComponent.navigate = (props) => {
     if (navigationRef.isReady()) {
       (navigationRef.navigate as any)(route, props);

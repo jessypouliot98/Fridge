@@ -1,11 +1,5 @@
-import {
-  getStaticProps,
-  NavigationFC,
-  NavigationFCStatic,
-  navigationRef,
-  RouteProps
-} from "../navigation/navigation";
 import React from "react";
+import {getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps} from "../utils/navigation";
 
 export type ModalFC<P = never> = NavigationFC<P>;
 
@@ -20,7 +14,7 @@ export type ModalSFCStatic<P = never> = NavigationFCStatic & {
 export type ModalSFC<P = never> = ModalFC<P> & ModalSFCStatic<P>;
 
 export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic): ModalSFC<P> => {
-  const { route } = statics;
+  const { route, permissions } = statics;
   const staticProps = getStaticProps(Component);
 
   const SuperComponent: ModalSFC<P> = (({ children, ...props }) => {
@@ -32,6 +26,7 @@ export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic)
   }) as any;
 
   SuperComponent.route = route;
+  SuperComponent.permissions = permissions;
   SuperComponent.open = (props) => {
     if (navigationRef.isReady()) {
       (navigationRef.navigate as any)(route, props);

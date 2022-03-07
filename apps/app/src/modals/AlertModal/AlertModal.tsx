@@ -2,6 +2,7 @@ import React from "react";
 import {ModalFC, withModal} from "../utils";
 import Backdrop from "../../components/Backdrop/Backdrop";
 import AlertBox from "../../components/AlertBox/AlertBox";
+import {Permissions} from "../../utils/permissions";
 
 type AlertModalProps = {
   title: string,
@@ -42,4 +43,7 @@ const AlertModal: ModalFC<AlertModalProps> = ({ navigation, route }) => {
   )
 }
 
-export default withModal(AlertModal, { route: 'AlertModal' });
+export default withModal(AlertModal, {
+  route: 'AlertModal',
+  permissions: [Permissions.PUBLIC],
+});

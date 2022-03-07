@@ -5,6 +5,7 @@ import IngredientList from "../../components/IngredientList/IngredientList";
 import IngredientListItem from "../../components/IngredientListItem/IngredientListItem";
 import {useTailwind} from "tailwind-rn";
 import {Recipe} from "@fridge/fridge";
+import {Permissions} from "../../utils/permissions";
 
 export type RecipeScreenProps = {
   recipe: Recipe,
@@ -31,4 +32,7 @@ const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ route }) => {
   );
 }
 
-export default withScreen(RecipeScreen, { route: 'RecipeScreen' });
+export default withScreen(RecipeScreen, {
+  route: 'RecipeScreen',
+  permissions: [Permissions.PUBLIC],
+});

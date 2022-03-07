@@ -1,6 +1,7 @@
 import {ScreenFC, withScreen} from "../utils";
-import {View, Text} from "react-native";
+import {Text, View} from "react-native";
 import React from "react";
+import {Permissions} from "../../utils/permissions";
 
 const SubscribeScreen: ScreenFC = () => {
   return (
@@ -10,4 +11,7 @@ const SubscribeScreen: ScreenFC = () => {
   );
 }
 
-export default withScreen(SubscribeScreen, { route: 'SubscribeScreen' });
+export default withScreen(SubscribeScreen, {
+  route: 'SubscribeScreen',
+  permissions: [Permissions.PRIVATE],
+});
