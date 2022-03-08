@@ -4,6 +4,7 @@ import { setAccountUser } from "./actions";
 
 export const initialState: AccountState = {
   user: null,
+  authToken: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {

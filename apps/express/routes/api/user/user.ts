@@ -3,6 +3,6 @@ import * as userController from "../../../controllers/user/user";
 
 const router = express.Router();
 
-router.get('/auth-token', userController.getAuthUser);
+router.get('/auth', userController.getAuthUser);
 
 export default router;
