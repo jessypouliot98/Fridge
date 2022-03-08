@@ -40,4 +40,5 @@ export default withScreen(HomeScreen, {
   route: 'HomeScreen',
   permissions: [Permissions.PUBLIC],
   tab: Tab.MAIN,
+  title: () => 'Fridge',
 });

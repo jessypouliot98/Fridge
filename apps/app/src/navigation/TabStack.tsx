@@ -4,7 +4,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as screens from "../screens";
 import { ScreenSFC } from "../screens/utils";
-import { filterNavigationComponent } from "../utils/navigation";
+import {filterNavigationComponent, getScreenOptions} from "../utils/navigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRootSelector } from "../hooks";
 import { selectIsLoggedIn } from "../store/account/selectors";
@@ -28,6 +28,7 @@ const TabStack = () => {
             <Stack.Screen
               key={Screen.route}
               name={Screen.route}
+              options={getScreenOptions(Screen)}
               component={Screen}
             />
           ))}

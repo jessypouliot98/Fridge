@@ -47,5 +47,4 @@ const AlertModal: ModalFC<AlertModalProps> = ({ navigation, route }) => {
 export default withModal(AlertModal, {
   route: 'AlertModal',
   permissions: [Permissions.PUBLIC],
-  tab: Tab.MAIN,
 });

@@ -61,4 +61,5 @@ export default withScreen(SettingScreen, {
   route: 'SettingScreen',
   permissions: [Permissions.PUBLIC],
   tab: Tab.SETTING,
+  title: () => 'Settings',
 });

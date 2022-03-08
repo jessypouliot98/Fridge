@@ -37,4 +37,5 @@ export default withScreen(RecipeScreen, {
   route: 'RecipeScreen',
   permissions: [Permissions.PUBLIC],
   tab: Tab.MAIN,
+  title: () => 'Recipe',
 });

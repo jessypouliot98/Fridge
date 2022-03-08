@@ -16,4 +16,5 @@ export default withScreen(ProfileScreen, {
   route: 'ProfileScreen',
   permissions: [Permissions.PRIVATE],
   tab: Tab.SETTING,
+  title: () => 'Profile & Preferences',
 });

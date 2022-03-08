@@ -17,7 +17,7 @@ export type ScreenSFCStatic<P = never> = ScreenFCStatic & {
 export type ScreenSFC<P = never> = ScreenFC<P> & ScreenSFCStatic<P>;
 
 export const withScreen = <P>(Component: ScreenFC<P>, statics: ScreenFCStatic): ScreenSFC<P> => {
-  const { route, permissions, tab } = statics;
+  const { route, permissions, tab, title } = statics;
   const staticProps = getStaticProps(Component);
 
   const SuperComponent: ScreenSFC<P> = (({ children, ...props }) => {
@@ -31,6 +31,8 @@ export const withScreen = <P>(Component: ScreenFC<P>, statics: ScreenFCStatic): 
   SuperComponent.route = route;
   SuperComponent.permissions = permissions;
   SuperComponent.tab = tab;
+  SuperComponent.title = title;
+
   SuperComponent.navigate = (props) => {
     if (navigationRef.isReady()) {
       (navigationRef.navigate as any)('ScreenStack', {

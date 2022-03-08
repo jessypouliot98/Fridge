@@ -34,6 +34,5 @@ const boringRecipe = new Recipe({
 });
 
 [1, 1/2*3, 1/3, 2, 16/9].forEach(scale => {
-	console.log({ scale });
 	console.log(boringRecipe.scale(scale).optimize().toText());
 });

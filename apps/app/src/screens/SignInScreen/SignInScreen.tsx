@@ -24,4 +24,5 @@ export default withScreen(SignInScreen, {
   route: 'SignInScreen',
   permissions: [Permissions.GUEST],
   tab: Tab.SETTING,
+  title: () => 'Sign In',
 });

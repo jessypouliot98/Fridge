@@ -23,8 +23,8 @@
     "app:start": "cd apps/app && npm run app:start",
     "app:android": "cd apps/app && npm run app:android",
     "app:ios": "cd apps/app && npm run app:ios",
-    "-----[WEB]-----": "",
-    "web:start": "cd apps/web && npm run web:start"
+    "-----[API]-----": "",
+    "api:start": "cd apps/express && npm run api:start"
   },
   "repository": {
     "type": "git",

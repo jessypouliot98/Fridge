@@ -16,4 +16,5 @@ export default withScreen(SignUpScreen, {
   route: 'SignUpScreen',
   permissions: [Permissions.GUEST],
   tab: Tab.SETTING,
+  title: () => 'Sign Up'
 });

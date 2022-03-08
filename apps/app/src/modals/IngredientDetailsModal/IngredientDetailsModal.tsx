@@ -37,5 +37,4 @@ const IngredientDetailsModal: ModalFC<IngredientDetailsModalProps> = ({ navigati
 export default withModal(IngredientDetailsModal, {
   route: 'IngredientDetailsModal',
   permissions: [Permissions.PUBLIC],
-  tab: Tab.MAIN,
 });

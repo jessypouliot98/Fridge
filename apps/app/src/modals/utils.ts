@@ -14,7 +14,7 @@ export type ModalSFCStatic<P = never> = NavigationFCStatic & {
 export type ModalSFC<P = never> = ModalFC<P> & ModalSFCStatic<P>;
 
 export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic): ModalSFC<P> => {
-  const { route, permissions } = statics;
+  const { route, permissions, title } = statics;
   const staticProps = getStaticProps(Component);
 
   const SuperComponent: ModalSFC<P> = (({ children, ...props }) => {
@@ -27,6 +27,8 @@ export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic)
 
   SuperComponent.route = route;
   SuperComponent.permissions = permissions;
+  SuperComponent.title = title;
+
   SuperComponent.open = (props) => {
     if (navigationRef.isReady()) {
       (navigationRef.navigate as any)('ModalStack', {

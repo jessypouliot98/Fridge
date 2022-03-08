@@ -46,11 +46,6 @@
 			"display": "table"
 		}
 	},
-	"hidden": {
-		"style": {
-			"display": "none"
-		}
-	},
 	"h-full": {
 		"style": {
 			"height": "100%"

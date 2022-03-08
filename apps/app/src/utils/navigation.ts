@@ -5,6 +5,12 @@ import {RouteProp} from "@react-navigation/core/lib/typescript/src/types";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
 
+export const getScreenOptions = (Screen: NavigationFCStatic) => {
+  return {
+    headerTitle: Screen.title?.(),
+  }
+}
+
 export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boolean, tab?: string }) => (Component: NavigationFCStatic) => {
   const isPermitted = [
     (isLoggedIn && Component.permissions.includes(Permissions.GUEST)),
@@ -26,6 +32,7 @@ export const getStaticProps = <
 export type NavigationFCStatic = {
   route: string,
   permissions: Permissions[],
+  title?: () => string,
 };
 
 export type NavigationProps<P = never> = {
@@ -35,5 +42,5 @@ export type NavigationProps<P = never> = {
 export type RouteProps<P = never> = Omit<P, keyof NavigationProps>;
 
 export type NavigationFC<
-  P = { never },
+  P = never,
   > = React.FC<NavigationProps<P>>;

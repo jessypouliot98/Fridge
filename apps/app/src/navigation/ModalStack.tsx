@@ -1,7 +1,7 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import * as modals from "../modals";
 import {ModalSFC} from "../modals/utils";
-import {filterNavigationComponent} from "../utils/navigation";
+import {filterNavigationComponent, getScreenOptions} from "../utils/navigation";
 import React from "react";
 import {useRootSelector} from "../hooks";
 import {selectIsLoggedIn} from "../store/account/selectors";
@@ -28,6 +28,7 @@ const ModalStack = () => {
             <Stack.Screen
               key={Modal.route}
               name={Modal.route}
+              options={getScreenOptions(Modal)}
               component={Modal}
             />
           ))}
