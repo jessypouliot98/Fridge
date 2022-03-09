@@ -42,8 +42,8 @@ const barbazRecipe = new Recipe({
 export const initialState: RecipeState = {
   isLoading: false,
   list: [
-    foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe,
-    foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe, foobarRecipe, barbazRecipe,
+    foobarRecipe,
+    barbazRecipe
   ],
 };
 

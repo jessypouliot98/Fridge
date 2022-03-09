@@ -1,5 +1,5 @@
-import { RootState } from './..';
+import { RootSelector } from "../../utils/redux";
 
-export const selectLocale = () => (state: RootState) => {
+export const selectLocale: RootSelector = () => (state) => {
   return state.appState.lang;
 };

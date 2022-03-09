@@ -1,5 +1,6 @@
-import { RootState } from './..';
+import { RootSelector } from "../../utils/redux";
+import { Recipe } from "@fridge/fridge";
 
-export const selectRecipeList = () => (state: RootState) => {
+export const selectRecipeList: RootSelector<Recipe[]> = () => (state) => {
   return state.recipeState.list;
 };

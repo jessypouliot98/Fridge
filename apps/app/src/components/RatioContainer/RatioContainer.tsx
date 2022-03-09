@@ -1,10 +1,10 @@
 import React from "react";
-import {View} from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 export type RatioType = [number, number];
 export type RatioContainerProps = {
   ratio: RatioType,
-  style?: any,
+  style?: StyleProp<ViewStyle>,
 }
 
 export const getRatio = ([x,y]: RatioType) => {

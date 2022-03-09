@@ -1,9 +1,9 @@
-import { RootState } from './..';
+import { RootSelector } from "../../utils/redux";
 
-export const selectIsLoggedIn = () => (state: RootState) => {
+export const selectIsLoggedIn: RootSelector = () => (state) => {
   return state.accountState.user !== null;
 };
 
-export const selectUser = () => (state: RootState) => {
+export const selectUser: RootSelector = () => (state) => {
   return state.accountState.user;
 };

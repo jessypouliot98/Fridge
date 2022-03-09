@@ -2,12 +2,15 @@ import {createNavigationContainerRef, NavigationContainerRef} from "@react-navig
 import React from "react";
 import {Permissions} from "./permissions";
 import {RouteProp} from "@react-navigation/core/lib/typescript/src/types";
+import {NativeStackNavigationOptions} from "@react-navigation/native-stack";
+import {BottomTabNavigationOptions} from "@react-navigation/bottom-tabs";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
 
-export const getScreenOptions = (Screen: NavigationFCStatic) => {
+export const getScreenOptions = (Screen: NavigationFCStatic): NativeStackNavigationOptions => {
   return {
     headerTitle: Screen.title?.(),
+    ...(Screen.options || {}),
   }
 }
 
@@ -33,6 +36,7 @@ export type NavigationFCStatic = {
   route: string,
   permissions: Permissions[],
   title?: () => string,
+  options?: NativeStackNavigationOptions | BottomTabNavigationOptions,
 };
 
 export type NavigationProps<P = never> = {

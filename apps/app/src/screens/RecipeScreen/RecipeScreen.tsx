@@ -17,7 +17,7 @@ const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ route }) => {
   const tailwind = useTailwind();
 
   return (
-    <View>
+    <View style={tailwind('p-4')}>
       <Text>{`Name: ${recipe.name}`}</Text>
       <Text>{`Servings: ${recipe.servings}`}</Text>
       <IngredientList>

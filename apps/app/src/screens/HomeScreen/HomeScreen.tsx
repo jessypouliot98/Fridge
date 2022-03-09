@@ -1,37 +1,48 @@
-import React, {useState} from 'react';
-import { View } from "react-native";
+import React from 'react';
+import {ScrollView, View, Text} from "react-native";
 import { ScreenFC, withScreen } from "../utils";
-import RecipeList, {RecipeListProps} from "../../components/RecipeList/RecipeList";
+import RecipeList from "../../components/RecipeList/RecipeList";
 import { useTailwind } from "tailwind-rn/dist";
+import { Permissions } from "../../utils/permissions";
+import { Tab } from "../../navigation/tabs";
+import SearchField from "../../components/SearchField/SearchField";
 import Button from "../../components/Button/Button";
-import SettingScreen from "../SettingScreen/SettingScreen";
-import {Permissions} from "../../utils/permissions";
-import {Tab} from "../../navigation/tabs";
+import RecipeBrowserScreen from "../RecipeBrowserScreen/RecipeBrowserScreen";
+import ContentCard from "../../components/ContentCard/ContentCard";
 
 const HomeScreen: ScreenFC = () => {
   const tailwind = useTailwind();
 
-  const [recipeListDisplayMode, setRecipeListDisplayMode] = useState<RecipeListProps['displayMode']>('table');
-
-  const handleToggleDisplayMode = () => {
-    setRecipeListDisplayMode((prevMode) => prevMode === 'table' ? 'list' : 'table')
-  }
-
   return (
-    <View style={tailwind('w-full p-2')}>
-      <View style={tailwind('mb-2')}>
-        <Button onPress={() => SettingScreen.navigate()}>
-          Setting page
-        </Button>
-      </View>
-      <View style={tailwind('mb-2')}>
-        <Button onPress={handleToggleDisplayMode}>
-          Toggle display mode
-        </Button>
-      </View>
-      <View style={tailwind('-mx-2')}>
-        <RecipeList style={tailwind('px-2')} displayMode={recipeListDisplayMode} />
-      </View>
+    <View style={tailwind('w-full h-full bg-gray-300')}>
+      <ScrollView
+        style={tailwind('p-2')}
+        contentContainerStyle={tailwind('h-full')}
+      >
+
+        <View>
+          <SearchField
+            style={tailwind('mb-2')}
+            onSubmit={(searchTerm) => RecipeBrowserScreen.navigate({ searchTerm })}
+          />
+        </View>
+
+        <ContentCard>
+          <View style={tailwind('mb-2')}>
+            <Text style={tailwind('text-lg font-bold')}>Trending</Text>
+          </View>
+
+          <RecipeList style={tailwind('mb-2')} />
+
+          <Button
+            type={'default'}
+            onPress={() => RecipeBrowserScreen.navigate()}
+          >
+            Show more
+          </Button>
+        </ContentCard>
+
+      </ScrollView>
     </View>
   );
 }

@@ -8,6 +8,7 @@ import {filterNavigationComponent, getScreenOptions} from "../utils/navigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRootSelector } from "../hooks";
 import { selectIsLoggedIn } from "../store/account/selectors";
+import {View} from "react-native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,7 +24,7 @@ const TabStack = () => {
         }}
       >
         {Object.values(screens as Record<string, ScreenSFC>)
-          .filter(filterNavigationComponent({ isLoggedIn, tab }))
+          .filter(filterNavigationComponent({ isLoggedIn, tab: tab as string }))
           .map((Screen) => (
             <Stack.Screen
               key={Screen.route}
@@ -41,6 +42,13 @@ const TabStack = () => {
       <Tab.Group
         screenOptions={{
           headerShown: false,
+          tabBarHideOnKeyboard: true,
+          tabBarVisibilityAnimationConfig: {
+            hide: {
+              animation: 'timing',
+              config: { duration: 0 },
+            }
+          }
         }}
       >
         {[EnumTab.MAIN, EnumTab.SETTING].map((tab) => {

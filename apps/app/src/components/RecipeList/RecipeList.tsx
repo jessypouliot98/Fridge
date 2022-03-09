@@ -1,35 +1,27 @@
 import React from "react";
-import {ScrollView, StyleProp, View, ViewStyle} from "react-native";
+import { FlatList, View } from "react-native";
 import { useRootSelector } from "../../hooks";
 import { selectRecipeList } from "../../store/recipe/selectors";
 import RecipeListItem from "../RecipeListItem/RecipeListItem";
 import { useTailwind } from "tailwind-rn/dist";
+import { Recipe } from "@fridge/fridge";
 
 export type RecipeListProps = {
-  displayMode: 'table' | 'list',
-  style?: StyleProp<ViewStyle>,
+
 }
 
 const RecipeList: React.FC<RecipeListProps> = (props) => {
-  const { style, displayMode } = props;
+  const { style } = props;
 
   const tailwind = useTailwind();
-  const recipes = useRootSelector(selectRecipeList());
-
+  const recipes: Recipe[] = useRootSelector(selectRecipeList());
 
   return (
-    <ScrollView
-      style={tailwind('w-full')}
-      contentContainerStyle={[tailwind('flex flex-row flex-wrap bg-blue-100'), style]}
-    >
-      {recipes.map((recipe, i) => (
-        <RecipeListItem
-          key={recipe.uid + i}
-          recipe={recipe}
-          displayMode={displayMode}
-        />
+    <View style={[tailwind('rounded-md overflow-hidden'), style]}>
+      {recipes.map((recipe) => (
+        <RecipeListItem key={recipe.uid} recipe={recipe} />
       ))}
-    </ScrollView>
+    </View>
   )
 };
 

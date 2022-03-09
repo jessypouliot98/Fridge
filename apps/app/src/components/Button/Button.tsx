@@ -1,7 +1,14 @@
-import React, {useState} from "react";
-import {GestureResponderEvent, StyleProp, Text, TouchableWithoutFeedback, View, ViewStyle} from "react-native";
-import {ThemeType} from "../../utils/types";
-import {useTailwind} from "tailwind-rn/dist";
+import React, { useState } from "react";
+import {
+  GestureResponderEvent,
+  Pressable,
+  StyleProp,
+  Text,
+  View,
+  ViewStyle
+} from "react-native";
+import { ThemeType } from "../../utils/types";
+import { useTailwind } from "tailwind-rn/dist";
 
 export type ButtonType = ThemeType | `outline-${ThemeType}` | 'default' | 'none';
 
@@ -104,7 +111,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   const tailwind = useTailwind();
 
   return (
-    <TouchableWithoutFeedback
+    <Pressable
       disabled={disabled}
       onPress={onPress}
       onPressIn={() => setIsPressed(true)}
@@ -117,7 +124,7 @@ const Button: React.FC<ButtonProps> = (props) => {
           children
         )}
       </View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   )
 }
 
