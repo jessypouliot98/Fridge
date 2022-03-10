@@ -2,7 +2,7 @@ import {createNavigationContainerRef, NavigationContainerRef} from "@react-navig
 import React from "react";
 import {Permissions} from "./permissions";
 import {RouteProp} from "@react-navigation/core/lib/typescript/src/types";
-import {NativeStackNavigationOptions} from "@react-navigation/native-stack";
+import {NativeStackNavigationOptions, NativeStackNavigationProp} from "@react-navigation/native-stack";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
 
@@ -43,7 +43,7 @@ export type NavigationFCStatic = {
 };
 
 export type NavigationProps<P = never> = {
-  navigation: NavigationContainerRef<Record<string, P>>,
+  navigation: NativeStackNavigationProp<Record<string, P>>,
   route: RouteProp<Record<string, P>>,
 }
 export type RouteProps<P = never> = Omit<P, keyof NavigationProps>;

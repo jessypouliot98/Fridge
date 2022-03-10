@@ -10,16 +10,16 @@ import Button from "../../components/Button/Button";
 import RecipeBrowserScreen from "../RecipeBrowserScreen/RecipeBrowserScreen";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import {getFromStorage, StorageKeys} from "../../utils/storage";
-import {LoaderModal} from "../../modals";
+import { OnboardingModal } from "../../modals";
 
 const HomeScreen: ScreenFC = () => {
   const tailwind = useTailwind();
 
   useEffect(() => {
-    getFromStorage<boolean>(StorageKeys.hasBeenOnboarded, true)
+    getFromStorage<boolean>(StorageKeys.hasBeenOnboarded, false)
       .then((hasBeenOnboarded) => {
         if (!hasBeenOnboarded) {
-          LoaderModal.open();
+          OnboardingModal.open();
         }
       });
   }, []);

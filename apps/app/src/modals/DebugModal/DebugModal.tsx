@@ -5,12 +5,12 @@ import { Text, View } from "react-native";
 import { Permissions } from "../../utils/permissions";
 import Button from "../../components/Button/Button";
 import {
-  getAllFromStorage,
   getFromStorage,
   removeFromStorage,
   removeMultipleFromStorage, saveToStorage,
   StorageKeys
 } from "../../utils/storage";
+import { OnboardingModal } from "../index";
 
 const DebugModal: ModalFC = () => {
   const tailwind = useTailwind();
@@ -40,6 +40,10 @@ const DebugModal: ModalFC = () => {
     setHasBeenOnboarded(!hasBeenOnboarded)
   }
 
+  const openOnboardingModal = () => {
+    OnboardingModal.open();
+  }
+
   return (
     <View style={tailwind('w-full h-full bg-white p-4')}>
       <View style={tailwind('mb-4')}>
@@ -52,6 +56,10 @@ const DebugModal: ModalFC = () => {
 
       <Button style={tailwind('mb-2')} onPress={toggleOnboarding}>
         {`${hasBeenOnboarded ? 'Disable' : 'Enable'} "${StorageKeys.hasBeenOnboarded}"`}
+      </Button>
+
+      <Button style={tailwind('mb-2')} onPress={openOnboardingModal}>
+        Open onboarding modal
       </Button>
     </View>
   )

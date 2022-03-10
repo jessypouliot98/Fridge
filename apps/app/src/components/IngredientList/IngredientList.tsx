@@ -1,15 +1,17 @@
 import React from "react";
-import ContentCard from "../ContentCard/ContentCard";
+import {StyleProp, View, ViewStyle} from "react-native";
 
-export type IngredientListProps = {}
+export type IngredientListProps = {
+  style?: StyleProp<ViewStyle>,
+}
 
 const IngredientList: React.FC<IngredientListProps> = (props) => {
-  const { children } = props;
+  const { children, style } = props;
 
   return (
-    <ContentCard>
+    <View style={style}>
       {children}
-    </ContentCard>
+    </View>
   );
 }
 
