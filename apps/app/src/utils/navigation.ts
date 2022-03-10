@@ -3,7 +3,6 @@ import React from "react";
 import {Permissions} from "./permissions";
 import {RouteProp} from "@react-navigation/core/lib/typescript/src/types";
 import {NativeStackNavigationOptions} from "@react-navigation/native-stack";
-import {BottomTabNavigationOptions} from "@react-navigation/bottom-tabs";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
 
@@ -22,6 +21,10 @@ export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boo
 
   const isInTab = tab ? (Component as any).tab === tab : true;
 
+  if (Component.permissions.includes(Permissions.DEBUG) && !__DEV__) {
+    return false;
+  }
+
   return isPermitted && isInTab;
 };
 
@@ -36,7 +39,7 @@ export type NavigationFCStatic = {
   route: string,
   permissions: Permissions[],
   title?: () => string,
-  options?: NativeStackNavigationOptions | BottomTabNavigationOptions,
+  options?: NativeStackNavigationOptions,
 };
 
 export type NavigationProps<P = never> = {

@@ -1,20 +1,19 @@
 import React from "react";
-import { FlatList, View } from "react-native";
+import {FlatList, StyleProp, View, ViewStyle} from "react-native";
 import { useRootSelector } from "../../hooks";
 import { selectRecipeList } from "../../store/recipe/selectors";
 import RecipeListItem from "../RecipeListItem/RecipeListItem";
 import { useTailwind } from "tailwind-rn/dist";
-import { Recipe } from "@fridge/fridge";
 
 export type RecipeListProps = {
-
+  style?: StyleProp<ViewStyle>,
 }
 
 const RecipeList: React.FC<RecipeListProps> = (props) => {
   const { style } = props;
 
   const tailwind = useTailwind();
-  const recipes: Recipe[] = useRootSelector(selectRecipeList());
+  const recipes = useRootSelector(selectRecipeList());
 
   return (
     <View style={[tailwind('rounded-md overflow-hidden'), style]}>

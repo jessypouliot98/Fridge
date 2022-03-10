@@ -20,7 +20,7 @@ export type ButtonProps = {
 }
 
 export const getButtonStyle = (tailwind: ReturnType<typeof useTailwind>, type: ButtonType, isPressed: boolean) => {
-  const defaultStyles = 'px-4 py-2 rounded border border-transparent flex flex-row justify-center items-center';
+  const defaultStyles = 'px-4 py-2 rounded-full border border-transparent flex flex-row justify-center items-center';
 
   switch (type) {
     case 'primary': {

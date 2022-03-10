@@ -3,7 +3,6 @@ import {ModalFC, withModal} from "../utils";
 import Backdrop from "../../components/Backdrop/Backdrop";
 import AlertBox from "../../components/AlertBox/AlertBox";
 import {Permissions} from "../../utils/permissions";
-import {Tab} from "../../navigation/tabs";
 
 type AlertModalProps = {
   title: string,
