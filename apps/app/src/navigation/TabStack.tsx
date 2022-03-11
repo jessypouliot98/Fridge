@@ -53,7 +53,7 @@ const TabStack = () => {
       >
         {[EnumTab.MAIN, EnumTab.SETTING].map((tab) => {
           return (
-            <Tab.Screen name={tab} children={() => (
+            <Tab.Screen key={tab} name={tab} children={() => (
               <Stack.Navigator initialRouteName={
                 tab === EnumTab.SETTING
                   ? SettingScreen.route

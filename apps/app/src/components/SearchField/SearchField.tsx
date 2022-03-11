@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {StyleProp, TextInput, Text, View, ViewStyle, Pressable} from "react-native";
 import { useTailwind } from "tailwind-rn/dist";
 import clsx from "clsx";
+import Icon from "../Icon/Icon";
 
 export type SearchFieldProps = {
   style?: StyleProp<ViewStyle>,
@@ -33,7 +34,7 @@ const SearchField: React.FC<SearchFieldProps> = (props) => {
         ]}
         onPress={handleSubmit}
       >
-        <Text>Q</Text>
+        <Icon name={'search'} />
       </Pressable>
     </View>
   )

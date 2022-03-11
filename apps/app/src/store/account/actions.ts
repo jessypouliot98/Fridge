@@ -1,11 +1,12 @@
-import { createAction } from "@reduxjs/toolkit";
-import { AccountAction, AccountState } from "./types";
-import { sleep } from "../../utils/common";
+import {createAction} from "@reduxjs/toolkit";
+import {AccountAction, AccountState} from "./types";
+import {sleep} from "../../utils/common";
 import LoaderModal from "../../modals/LoaderModal/LoaderModal";
-import { ThunkActionCreator } from "../../utils/redux";
-import { navigationRef } from "../../utils/navigation";
-import { getAuthToken, createAuthUser } from "../../api/auth/auth";
-import { getAuthUser } from "../../api/user/user";
+import {ThunkActionCreator} from "../../utils/redux";
+import {navigationRef} from "../../utils/navigation";
+import {createAuthUser, getAuthToken} from "../../api/auth/auth";
+import {getAuthUser} from "../../api/user/user";
+import {removeFromStorage, saveToStorage, StorageKeys} from "../../utils/storage";
 
 export const setAccountUser = createAction<AccountState['user']>(AccountAction.SET_USER);
 export const setAuthToken = createAction<AccountState['authToken']>(AccountAction.SET_AUTH_TOKEN);
@@ -57,12 +58,12 @@ export const signOut: ThunkActionCreator = () => async (dispatch) => {
   LoaderModal.close();
 }
 
-export const applyAuthToken: ThunkActionCreator<[string]> = (authToken) => (dispatch) => {
+export const applyAuthToken: ThunkActionCreator<[string]> = (authToken) => async (dispatch) => {
   dispatch(setAuthToken(authToken));
-  // TODO Save to localStorage
+  await saveToStorage(StorageKeys.authToken, authToken);
 }
 
-export const revokeAuthToken: ThunkActionCreator = () => (dispatch) => {
+export const revokeAuthToken: ThunkActionCreator = () => async (dispatch) => {
   dispatch(setAuthToken(null));
-  // TODO Delete from localStorage
+  await removeFromStorage(StorageKeys.authToken);
 }

@@ -29,7 +29,9 @@ const CheckBox: React.FC<CheckBoxProps> = (props) => {
     <TouchableWithoutFeedback onPress={handleCheck}>
       <View style={tailwind('p-3 -m-3')}>
         <View style={tailwind('rounded-full border border-gray-200 bg-white w-6 h-6')}>
-          <Text style={tailwind(clsx('text-center', isChecked ? 'text-green-500' : 'text-red-500'))}>{isChecked ? 'X' : 'O'}</Text>
+          {isChecked && (
+            <View style={tailwind('rounded-full w-full h-full bg-red-700')} />
+          )}
         </View>
       </View>
     </TouchableWithoutFeedback>

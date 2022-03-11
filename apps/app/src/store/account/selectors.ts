@@ -4,6 +4,6 @@ export const selectIsLoggedIn: RootSelector = () => (state) => {
   return state.accountState.user !== null;
 };
 
-export const selectUser: RootSelector = () => (state) => {
+export const selectAuthUser: RootSelector = () => (state) => {
   return state.accountState.user;
 };
