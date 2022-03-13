@@ -8,7 +8,7 @@ import { Permissions } from "../../utils/permissions";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import { useTailwind } from "tailwind-rn/dist";
 import Input from "../../components/Input/Input";
-import {SettingTab} from "../../tabs";
+import SettingTab from "../../tabs/SettingTab/SettingTab";
 
 const SignInScreen: ScreenFC = () => {
   const dispatch = useDispatch();

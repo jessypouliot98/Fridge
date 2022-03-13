@@ -2,7 +2,7 @@ import {ScreenFC, withScreen} from "../utils";
 import {Text, View} from "react-native";
 import React from "react";
 import {Permissions} from "../../utils/permissions";
-import {SettingTab} from "../../tabs";
+import SettingTab from "../../tabs/SettingTab/SettingTab";
 
 const SubscribeScreen: ScreenFC = () => {
   return (

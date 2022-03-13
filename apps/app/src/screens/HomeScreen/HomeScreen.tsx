@@ -11,7 +11,7 @@ import ContentCard from "../../components/ContentCard/ContentCard";
 import { getFromStorage, StorageKeys } from "../../utils/storage";
 import { OnboardingModal } from "../../modals";
 import AdSpace from "../../components/AdSpace/AdSpace";
-import {MainTab} from "../../tabs";
+import MainTab from "../../tabs/MainTab/MainTab";
 
 const HomeScreen: ScreenFC = () => {
   const tailwind = useTailwind();

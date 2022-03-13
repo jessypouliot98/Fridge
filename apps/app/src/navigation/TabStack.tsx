@@ -24,7 +24,7 @@ const TabStack = () => {
         }}
       >
         {Object.values(screens as Record<string, ScreenSFC>)
-          // .filter(filterNavigationComponent({ isLoggedIn, tab }))
+          .filter(filterNavigationComponent({ isLoggedIn, tab }))
           .map((Screen) => (
             <Stack.Screen
               key={Screen.route}
@@ -38,7 +38,7 @@ const TabStack = () => {
   }
 
   return (
-    <TabNavigator.Navigator initialRouteName={HomeScreen.route}>
+    <TabNavigator.Navigator initialRouteName={tabs[0].name}>
       <TabNavigator.Group
         screenOptions={{
           headerShown: false,
@@ -54,7 +54,7 @@ const TabStack = () => {
         {tabs.map((tab) => {
           return (
             <TabNavigator.Screen key={tab.name} name={tab.name} children={() => (
-              <Stack.Navigator initialRouteName={HomeScreen.route || tab.mainScreen.route}>
+              <Stack.Navigator initialRouteName={HomeScreen.route}>
                 {getStackScreens(tab)}
               </Stack.Navigator>
             )}/>

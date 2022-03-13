@@ -22,7 +22,7 @@ import InstructionList from "../../components/InstructionList/InstructionList";
 import InstructionListItem from "../../components/InstructionListItem/InstructionListItem";
 import AdSpace from '../../components/AdSpace/AdSpace';
 import Icon from "../../components/Icon/Icon";
-import {MainTab} from "../../tabs";
+import MainTab from "../../tabs/MainTab/MainTab";
 
 export type RecipeScreenProps = {
   recipe: Recipe,

@@ -10,7 +10,7 @@ import {useRootDispatch, useRootSelector} from "../../hooks";
 import {Permissions} from "../../utils/permissions";
 import {selectIsLoggedIn} from "../../store/account/selectors";
 import {SignInScreen, SignUpScreen} from "../index";
-import {SettingTab} from "../../tabs";
+import SettingTab from "../../tabs/SettingTab/SettingTab";
 
 const SettingScreen: ScreenFC = () => {
   const tailwind = useTailwind();

@@ -8,7 +8,7 @@ import ContentCard from "../../components/ContentCard/ContentCard";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { signUp } from "../../store/account/actions";
-import {SettingTab} from "../../tabs";
+import SettingTab from "../../tabs/SettingTab/SettingTab";
 
 const SignUpScreen: ScreenFC = () => {
   const dispatch = useDispatch();

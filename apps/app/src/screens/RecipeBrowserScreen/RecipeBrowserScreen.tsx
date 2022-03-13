@@ -6,7 +6,7 @@ import SearchField from "../../components/SearchField/SearchField";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import { useTailwind } from "tailwind-rn/dist";
 import RecipeBrowserList from "../../components/RecipeBrowserList/RecipeBrowserList";
-import {MainTab} from "../../tabs";
+import MainTab from "../../tabs/MainTab/MainTab";
 
 export type RecipeBrowserScreenProps = {
   searchTerm?: string,
