@@ -38,7 +38,7 @@ export const withScreen = <P>(Component: ScreenFC<P>, statics: ScreenFCStatic): 
   SuperComponent.navigate = (props) => {
     if (navigationRef.isReady()) {
       (navigationRef.navigate as any)('ScreenStack', {
-        screen: tab,
+        screen: tab.name,
         params: {
           screen: route,
           params: props,

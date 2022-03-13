@@ -1,6 +1,6 @@
-import axios from 'axios';
 import {JSONResponse} from "../types";
 import {getHeadersWithAuthorization} from "../../utils/api";
+import axios from "../../utils/axios";
 
 const routes = {
   get: {

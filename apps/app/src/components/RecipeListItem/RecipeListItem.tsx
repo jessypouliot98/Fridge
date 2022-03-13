@@ -1,9 +1,9 @@
 import React from "react";
-import {View, Text, Pressable, Image} from "react-native";
-import {Recipe} from "@fridge/fridge";
-import {RecipeScreen} from "../../screens";
+import { View, Text, Pressable, Image } from "react-native";
+import { Recipe } from "@fridge/fridge";
+import { RecipeScreen } from "../../screens";
 import RatioContainer from "../RatioContainer/RatioContainer";
-import {useTailwind} from "tailwind-rn/dist";
+import { useTailwind } from "tailwind-rn/dist";
 
 export type RecipeListItemProps = {
   recipe: Recipe,
@@ -24,7 +24,7 @@ const RecipeListItem: React.FC<RecipeListItemProps> = (props) => {
             <RatioContainer ratio={[4, 3]}>
               <Image
                 style={tailwind('w-full h-full')}
-                source={{ uri: `https://picsum.photos/500?random=${recipe.uid}` }}
+                source={{ uri: `https://picsum.photos/300?random=${recipe.uid}` }}
               />
             </RatioContainer>
           </View>

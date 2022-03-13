@@ -114,6 +114,10 @@
   justify-content: center
 }
 
+.justify-between {
+  justify-content: space-between
+}
+
 .overflow-hidden {
   overflow: hidden
 }
@@ -255,6 +259,11 @@
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity))
+}
+
+.bg-red-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 226 226 / var(--tw-bg-opacity))
 }
 
 .p-1 {

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import axiosRetry from "axios-retry";
 
+const HOME = '192.168.0.102:3000';
+
 const apiInstance = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: `http://${HOME}/api`,
 });
 
 axiosRetry(apiInstance, {

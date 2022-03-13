@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Image,
   View,
@@ -6,7 +6,8 @@ import {
   ScrollView,
   Animated,
   useWindowDimensions,
-  NativeScrollEvent, StyleProp, ViewStyle, Pressable
+  NativeScrollEvent,
+  Pressable, FlatList,
 } from "react-native";
 import { ScreenFC, withScreen } from "../utils";
 import IngredientList from "../../components/IngredientList/IngredientList";
@@ -51,11 +52,11 @@ const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ navigation, route }) => {
     transform: [{
       translateY: scrollOffset.interpolate({
         inputRange: [0, width],
-        outputRange: [0, width / 2],
+        outputRange: [0, width * 0.5],
       }),
     }],
     opacity: scrollOffset.interpolate({
-      inputRange: [width / 2, width],
+      inputRange: [width * 0.5, width],
       outputRange: [1, 0],
     }),
   };
@@ -64,12 +65,29 @@ const RecipeScreen: ScreenFC<RecipeScreenProps> = ({ navigation, route }) => {
     <View style={tailwind('relative')}>
       <ScrollView onScroll={scrollHandler}>
         <Animated.View style={contentTranslationStyle}>
-          <RatioContainer ratio={IMAGE_FORMAT}>
-            <Image
-              style={tailwind('w-full h-full')}
-              source={{ uri: `https://picsum.photos/500?random=${recipe.uid}` }}
-            />
-          </RatioContainer>
+          <FlatList
+            data={[
+              { id: 1, uri: `https://picsum.photos/300?random=${recipe.uid}` },
+              { id: 2, uri: `https://picsum.photos/300?random=${recipe.uid}` },
+              { id: 3, uri: `https://picsum.photos/300?random=${recipe.uid}` },
+            ]}
+            horizontal={true}
+            pagingEnabled={true}
+            bounces={true}
+            alwaysBounceHorizontal={true}
+            showsHorizontalScrollIndicator={true}
+            keyExtractor={({ id }) => id.toString()}
+            renderItem={() => (
+              <Pressable style={{ width }} onPress={() => console.log('open image')}>
+                <RatioContainer ratio={IMAGE_FORMAT}>
+                  <Image
+                    style={tailwind('w-full h-full')}
+                    source={{ uri: `https://picsum.photos/300?random=${recipe.uid}` }}
+                  />
+                </RatioContainer>
+              </Pressable>
+            )}
+          />
         </Animated.View>
 
         <View style={tailwind('relative')}>

@@ -25,14 +25,13 @@ export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boo
     (Component.permissions.includes(Permissions.PRIVATE) && !isLoggedIn),
   ].some(condition => !condition);
 
-  // const isInTab = tab?.name ? (Component as ScreenSFC).tab.name === tab.name : true;
-  // console.log({isInTab, tab: tab?.name, Component: (Component as ScreenSFC)?.tab.name})
+  const isInTab = tab?.name ? (Component as ScreenSFC).tab.name === tab.name : true;
 
   if (Component.permissions.includes(Permissions.DEBUG) && !__DEV__) {
     return false;
   }
 
-  return isPermitted;
+  return isPermitted && isInTab;
 };
 
 export const getStaticProps = <

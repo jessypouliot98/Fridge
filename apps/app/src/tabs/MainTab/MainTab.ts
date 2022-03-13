@@ -3,7 +3,7 @@ import HomeScreen from "../../screens/HomeScreen/HomeScreen";
 
 const MainTab: Tab = {
   name: 'MainTab',
-  mainScreen: HomeScreen,
+  getInitialRouteName: () => HomeScreen.route,
 }
 
 export default MainTab;

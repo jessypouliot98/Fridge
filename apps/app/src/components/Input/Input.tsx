@@ -20,13 +20,10 @@ const Input: React.FC<InputProps> = (props) => {
   const { styles } = props;
 
   const textInputProps = useInput(props);
-  const tailwind = useTailwind();
 
   return (
     <View style={styles?.container}>
-      <TextInput
-
-      />
+      <TextInput {...textInputProps} />
     </View>
   )
 }

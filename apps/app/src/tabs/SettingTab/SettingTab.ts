@@ -3,7 +3,7 @@ import SettingScreen from "../../screens/SettingScreen/SettingScreen";
 
 const SettingTab: Tab = {
   name: 'SettingTab',
-  mainScreen: SettingScreen,
+  getInitialRouteName: () => SettingScreen.route,
 }
 
 export default SettingTab;

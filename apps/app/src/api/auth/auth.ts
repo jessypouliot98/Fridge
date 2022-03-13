@@ -1,6 +1,5 @@
-
-import {JSONResponse} from "../types";
 import axios from "../../utils/axios";
+import {JSONResponse} from "../types";
 
 const routes = {
   post: {

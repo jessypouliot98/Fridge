@@ -1,7 +1,6 @@
-import { HomeScreen, SettingScreen } from "../screens";
+import * as screens from "../screens";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import * as screens from "../screens";
 import { tabs } from "../tabs";
 import { ScreenSFC } from "../screens/utils";
 import {filterNavigationComponent, getScreenOptions} from "../utils/navigation";
@@ -9,6 +8,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRootSelector } from "../hooks";
 import { selectIsLoggedIn } from "../store/account/selectors";
 import { Tab } from "../tabs/types";
+import TabBar from "./TabBar/TabBar";
+import {Platform} from "react-native";
 
 const TabNavigator = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -38,11 +39,17 @@ const TabStack = () => {
   }
 
   return (
-    <TabNavigator.Navigator initialRouteName={tabs[0].name}>
+    <TabNavigator.Navigator
+      initialRouteName={tabs[0].name}
+    >
       <TabNavigator.Group
         screenOptions={{
           headerShown: false,
           tabBarHideOnKeyboard: true,
+          tabBarItemStyle: Platform.select({
+            default: null,
+            android: { paddingBottom: 5 },
+          }),
           tabBarVisibilityAnimationConfig: {
             hide: {
               animation: 'timing',
@@ -54,7 +61,7 @@ const TabStack = () => {
         {tabs.map((tab) => {
           return (
             <TabNavigator.Screen key={tab.name} name={tab.name} children={() => (
-              <Stack.Navigator initialRouteName={HomeScreen.route}>
+              <Stack.Navigator initialRouteName={tab.getInitialRouteName()}>
                 {getStackScreens(tab)}
               </Stack.Navigator>
             )}/>

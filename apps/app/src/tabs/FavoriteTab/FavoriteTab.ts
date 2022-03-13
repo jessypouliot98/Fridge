@@ -1,9 +1,9 @@
 import { Tab } from "../types";
-import HomeScreen from "../../screens/HomeScreen/HomeScreen";
+import FavoriteScreen from "../../screens/FavoriteScreen/FavoriteScreen";
 
 const FavoriteTab: Tab = {
   name: 'FavoriteTab',
-  mainScreen: HomeScreen,
+  getInitialRouteName: () => FavoriteScreen.route,
 }
 
 export default FavoriteTab;
