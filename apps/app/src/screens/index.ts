@@ -1,4 +1,5 @@
 export { default as HomeScreen } from './HomeScreen/HomeScreen'
+export { default as FavoriteScreen } from './FavoriteScreen/FavoriteScreen'
 export { default as RecipeScreen } from './RecipeScreen/RecipeScreen'
 export { default as RecipeBrowserScreen } from './RecipeBrowserScreen/RecipeBrowserScreen'
 export { default as SettingScreen } from './SettingScreen/SettingScreen'

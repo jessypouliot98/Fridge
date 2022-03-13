@@ -1,13 +1,15 @@
 import {StyleProp, TextInput, TextStyle, View, ViewStyle} from "react-native";
 import React from "react";
+import {useTailwind} from "tailwind-rn/dist";
+import {useInput} from "./hooks";
 
 export type InputType = 'string' | 'password' | 'email';
 
 export type InputProps = {
   type: InputType,
   styles?: {
-    container: StyleProp<ViewStyle>,
-    input: StyleProp<TextStyle>,
+    container?: StyleProp<ViewStyle>,
+    input?: StyleProp<TextStyle>,
   },
   placeholder?: string,
   autoFocus?: boolean,
@@ -15,22 +17,15 @@ export type InputProps = {
 }
 
 const Input: React.FC<InputProps> = (props) => {
-  const {
-    type,
-    styles,
-    placeholder,
-    autoFocus,
-    onChange,
-  } = props;
+  const { styles } = props;
+
+  const textInputProps = useInput(props);
+  const tailwind = useTailwind();
 
   return (
     <View style={styles?.container}>
       <TextInput
-        style={styles?.input}
-        placeholder={placeholder}
-        secureTextEntry={type === 'password'}
-        autoFocus={autoFocus}
-        onChangeText={onChange}
+
       />
     </View>
   )

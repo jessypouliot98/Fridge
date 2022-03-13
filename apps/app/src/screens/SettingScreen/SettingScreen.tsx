@@ -10,7 +10,7 @@ import {useRootDispatch, useRootSelector} from "../../hooks";
 import {Permissions} from "../../utils/permissions";
 import {selectIsLoggedIn} from "../../store/account/selectors";
 import {SignInScreen, SignUpScreen} from "../index";
-import {Tab} from "../../navigation/tabs";
+import {SettingTab} from "../../tabs";
 
 const SettingScreen: ScreenFC = () => {
   const tailwind = useTailwind();
@@ -60,6 +60,6 @@ const SettingScreen: ScreenFC = () => {
 export default withScreen(SettingScreen, {
   route: 'SettingScreen',
   permissions: [Permissions.PUBLIC],
-  tab: Tab.SETTING,
+  tab: SettingTab,
   title: () => 'Settings',
 });

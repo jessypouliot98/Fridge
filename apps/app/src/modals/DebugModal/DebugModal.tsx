@@ -11,12 +11,17 @@ import {
   StorageKeys
 } from "../../utils/storage";
 import { OnboardingModal } from "../index";
+import {useRootDispatch, useRootSelector} from "../../hooks";
+import {selectRecipeLoading} from "../../store/recipe/selectors";
+import {setRecipeLoading} from "../../store/recipe/actions";
 
 const DebugModal: ModalFC = () => {
   const tailwind = useTailwind();
 
+  const dispatch = useRootDispatch();
   const [isWaitingForReset, setIsWaitingForReset] = useState(true);
   const [hasBeenOnboarded, setHasBeenOnboarded] = useState<boolean | null>(null);
+  const isRecipeLoading = useRootSelector(selectRecipeLoading());
 
   useEffect(() => {
     if (isWaitingForReset) {
@@ -44,6 +49,10 @@ const DebugModal: ModalFC = () => {
     OnboardingModal.open();
   }
 
+  const toggleRecipeLoading = () => {
+    dispatch(setRecipeLoading(!isRecipeLoading));
+  }
+
   return (
     <View style={tailwind('w-full h-full bg-white p-4')}>
       <View style={tailwind('mb-4')}>
@@ -60,6 +69,10 @@ const DebugModal: ModalFC = () => {
 
       <Button style={tailwind('mb-2')} onPress={openOnboardingModal}>
         Open onboarding modal
+      </Button>
+
+      <Button style={tailwind('mb-2')} onPress={toggleRecipeLoading}>
+        {`Toggle recipe loading to "${isRecipeLoading ? 'OFF' : 'ON'}"`}
       </Button>
     </View>
   )

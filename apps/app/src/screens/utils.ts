@@ -1,6 +1,6 @@
 import React from "react";
 import { getStaticProps, NavigationFC, NavigationFCStatic, navigationRef, RouteProps } from "../utils/navigation";
-import { Tab } from "../navigation/tabs";
+import {Tab} from "../tabs/types";
 
 export type ScreenFC<P = never> = NavigationFC<P>;
 
@@ -20,10 +20,11 @@ export const withScreen = <P>(Component: ScreenFC<P>, statics: ScreenFCStatic): 
   const { route, permissions, tab, title, options } = statics;
   const staticProps = getStaticProps(Component);
 
-  const SuperComponent: ScreenSFC<P> = (({ children, ...props }) => {
+  const SuperComponent: ScreenSFC<P> = ((props: any) => {
+    const { children, ...componentProps } = props;
     return React.createElement(
       Component,
-      props as any,
+      componentProps,
       children
     );
   }) as any;

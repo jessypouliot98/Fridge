@@ -17,10 +17,11 @@ export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic)
   const { route, permissions, title, options } = statics;
   const staticProps = getStaticProps(Component);
 
-  const SuperComponent: ModalSFC<P> = (({ children, ...props }) => {
+  const SuperComponent: ModalSFC<P> = ((props: any) => {
+    const { children, ...componentProps } = props;
     return React.createElement(
       Component,
-      props as any,
+      componentProps,
       children
     );
   }) as any;

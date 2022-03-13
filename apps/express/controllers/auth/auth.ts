@@ -16,6 +16,6 @@ export const getBearerToken: Controller = (req, res) => {
 
   return respondWithJSON(
     res,
-    { token: 'Bearer asdaskldklaj' },
+    { token: 'asdaskldklaj' },
   );
 }

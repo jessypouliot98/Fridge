@@ -5,6 +5,7 @@ import Portion from "../Portion/Portion";
 
 type recipeDetails = {
     name: string;
+    description: string;
     ingredients: PortionnedIngredient[],
     servings: number;
 }
@@ -12,6 +13,7 @@ type recipeDetails = {
 class Recipe extends Model {
 
     public name: recipeDetails['name'];
+    public description: recipeDetails['description']
     public ingredients: recipeDetails['ingredients'];
     public servings: recipeDetails['servings'];
 
@@ -19,6 +21,7 @@ class Recipe extends Model {
         super();
 
         this.name = details.name;
+        this.description = details.description;
         this.ingredients = details.ingredients;
         this.servings = details.servings;
     }
@@ -28,6 +31,7 @@ class Recipe extends Model {
 
         return new Recipe({
             name: this.name,
+            description: this.description,
             ingredients: this.ingredients.map(ingredient => ingredient.scale(...args)),
             servings: this.servings * multiplier,
         });
@@ -36,6 +40,7 @@ class Recipe extends Model {
     public optimize(...args: Parameters<Portion['optimize']>) {
         return new Recipe({
             name: this.name,
+            description: this.description,
             ingredients: this.ingredients.map(ingredient => ingredient.optimize(...args)),
             servings: this.servings,
         });
@@ -44,6 +49,7 @@ class Recipe extends Model {
     public convert(...args: Parameters<Portion['convert']>) {
         return new Recipe({
             name: this.name,
+            description: this.description,
             ingredients: this.ingredients.map(ingredient => ingredient.convert(...args)),
             servings: this.servings,
         });

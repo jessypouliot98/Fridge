@@ -20,6 +20,7 @@
     "build": "lerna run build",
     "test": "lerna run --parallel test",
     "-----[APP]-----": "",
+    "app:install": "sh ./scripts/pod-install.sh",
     "app:start": "cd apps/app && npm run app:start",
     "app:android": "cd apps/app && npm run app:android",
     "app:ios": "cd apps/app && npm run app:ios",

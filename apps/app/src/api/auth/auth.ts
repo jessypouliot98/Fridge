@@ -1,12 +1,11 @@
-import axios from 'axios';
-import {JSONResponse} from "../types";
 
-const HOST = 'http://localhost:3000/api';
+import {JSONResponse} from "../types";
+import axios from "../../utils/axios";
 
 const routes = {
   post: {
-    createUser: () =>`${HOST}/auth`,
-    authToken: () =>`${HOST}/auth`,
+    createUser: () => '/auth',
+    authToken: () => '/auth',
   }
 }
 

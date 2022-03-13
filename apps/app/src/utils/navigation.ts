@@ -1,9 +1,10 @@
 import { createNavigationContainerRef } from "@react-navigation/native";
 import React from "react";
-import {Permissions} from "./permissions";
-import {RouteProp} from "@react-navigation/core/lib/typescript/src/types";
-import {NativeStackNavigationOptions, NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {ScreenFC, ScreenSFC} from "../screens/utils";
+import { Permissions } from "./permissions";
+import { RouteProp } from "@react-navigation/core/lib/typescript/src/types";
+import { NativeStackNavigationOptions, NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ScreenSFC } from "../screens/utils";
+import { Tab } from "../tabs/types";
 
 export const navigationRef = createNavigationContainerRef<Record<string, any>>();
 
@@ -14,7 +15,7 @@ export const getScreenOptions = (Screen: NavigationFCStatic): NativeStackNavigat
   }
 }
 
-export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boolean, tab?: string }) => (Component: NavigationFCStatic) => {
+export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boolean, tab?: Tab }) => (Component: NavigationFCStatic) => {
   if ((Component.permissions || []).length === 0) {
     return false;
   }
@@ -24,13 +25,14 @@ export const filterNavigationComponent = ({ isLoggedIn, tab }: { isLoggedIn: boo
     (Component.permissions.includes(Permissions.PRIVATE) && !isLoggedIn),
   ].some(condition => !condition);
 
-  const isInTab = tab ? (Component as ScreenSFC).tab === tab : true;
+  // const isInTab = tab?.name ? (Component as ScreenSFC).tab.name === tab.name : true;
+  // console.log({isInTab, tab: tab?.name, Component: (Component as ScreenSFC)?.tab.name})
 
   if (Component.permissions.includes(Permissions.DEBUG) && !__DEV__) {
     return false;
   }
 
-  return isPermitted && isInTab;
+  return isPermitted;
 };
 
 export const getStaticProps = <
@@ -47,7 +49,7 @@ export type NavigationFCStatic = {
   options?: NativeStackNavigationOptions,
 };
 
-export type NavigationProps<P = never> = {
+export type NavigationProps<P extends {} = never> = {
   navigation: NativeStackNavigationProp<Record<string, P>>,
   route: RouteProp<Record<string, P>>,
 }

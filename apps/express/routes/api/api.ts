@@ -1,5 +1,5 @@
 import express from 'express';
-import { localeHeaderMiddleware } from "../../middlewares";
+import {localeHeaderMiddleware, throttleMiddleware} from "../../middlewares";
 import authRouter from './auth/auth';
 import userRouter from './user/user';
 import recipeRouter from './recipe/recipe';
@@ -8,6 +8,7 @@ import * as apiController from "./api/api";
 const router = express.Router();
 
 router.use(localeHeaderMiddleware());
+router.use(throttleMiddleware());
 
 router.get('/version', apiController.getVersion);
 

@@ -1,22 +1,22 @@
 import { HomeScreen, SettingScreen } from "../screens";
-import { Tab as EnumTab } from "./tabs";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as screens from "../screens";
+import { tabs } from "../tabs";
 import { ScreenSFC } from "../screens/utils";
 import {filterNavigationComponent, getScreenOptions} from "../utils/navigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRootSelector } from "../hooks";
 import { selectIsLoggedIn } from "../store/account/selectors";
-import {View} from "react-native";
+import { Tab } from "../tabs/types";
 
-const Tab = createBottomTabNavigator();
+const TabNavigator = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const TabStack = () => {
   const isLoggedIn = useRootSelector(selectIsLoggedIn());
 
-  const getStackScreens = (tab: EnumTab) => {
+  const getStackScreens = (tab: Tab) => {
     return (
       <Stack.Group
         screenOptions={{
@@ -24,7 +24,7 @@ const TabStack = () => {
         }}
       >
         {Object.values(screens as Record<string, ScreenSFC>)
-          .filter(filterNavigationComponent({ isLoggedIn, tab: tab as string }))
+          // .filter(filterNavigationComponent({ isLoggedIn, tab }))
           .map((Screen) => (
             <Stack.Screen
               key={Screen.route}
@@ -38,8 +38,8 @@ const TabStack = () => {
   }
 
   return (
-    <Tab.Navigator initialRouteName={HomeScreen.route}>
-      <Tab.Group
+    <TabNavigator.Navigator initialRouteName={HomeScreen.route}>
+      <TabNavigator.Group
         screenOptions={{
           headerShown: false,
           tabBarHideOnKeyboard: true,
@@ -51,21 +51,17 @@ const TabStack = () => {
           }
         }}
       >
-        {[EnumTab.MAIN, EnumTab.SETTING].map((tab) => {
+        {tabs.map((tab) => {
           return (
-            <Tab.Screen key={tab} name={tab} children={() => (
-              <Stack.Navigator initialRouteName={
-                tab === EnumTab.SETTING
-                  ? SettingScreen.route
-                  : HomeScreen.route
-              }>
+            <TabNavigator.Screen key={tab.name} name={tab.name} children={() => (
+              <Stack.Navigator initialRouteName={HomeScreen.route || tab.mainScreen.route}>
                 {getStackScreens(tab)}
               </Stack.Navigator>
             )}/>
           )
         })}
-      </Tab.Group>
-    </Tab.Navigator>
+      </TabNavigator.Group>
+    </TabNavigator.Navigator>
   );
 }
 

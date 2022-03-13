@@ -2,13 +2,13 @@ import {ScreenFC, withScreen} from "../utils";
 import {View, Text, Pressable} from "react-native";
 import {Permissions} from "../../utils/permissions";
 import React, {useState} from 'react';
-import {Tab} from "../../navigation/tabs";
 import {useDispatch} from "react-redux";
 import {useTailwind} from "tailwind-rn/dist";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { signUp } from "../../store/account/actions";
+import {SettingTab} from "../../tabs";
 
 const SignUpScreen: ScreenFC = () => {
   const dispatch = useDispatch();
@@ -59,6 +59,6 @@ const SignUpScreen: ScreenFC = () => {
 export default withScreen(SignUpScreen, {
   route: 'SignUpScreen',
   permissions: [Permissions.GUEST],
-  tab: Tab.SETTING,
+  tab: SettingTab,
   title: () => 'Sign Up'
 });

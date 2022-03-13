@@ -2,11 +2,9 @@ import axios from 'axios';
 import {JSONResponse} from "../types";
 import {getHeadersWithAuthorization} from "../../utils/api";
 
-const HOST = 'http://localhost:3000/api';
-
 const routes = {
   get: {
-    authUser: () =>`${HOST}/user/auth`
+    authUser: () => '/user/auth'
   }
 }
 

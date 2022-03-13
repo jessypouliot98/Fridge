@@ -1,14 +1,14 @@
 import { ScreenFC, withScreen } from "../utils";
-import {Pressable, Text, TextInput, View} from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import Button from "../../components/Button/Button";
 import { signIn } from "../../store/account/actions";
 import React, { useState } from 'react';
 import { Permissions } from "../../utils/permissions";
-import { Tab } from "../../navigation/tabs";
 import ContentCard from "../../components/ContentCard/ContentCard";
 import { useTailwind } from "tailwind-rn/dist";
 import Input from "../../components/Input/Input";
+import {SettingTab} from "../../tabs";
 
 const SignInScreen: ScreenFC = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const SignInScreen: ScreenFC = () => {
 export default withScreen(SignInScreen, {
   route: 'SignInScreen',
   permissions: [Permissions.GUEST],
-  tab: Tab.SETTING,
+  tab: SettingTab,
   title: () => 'Sign In',
   options: {
 

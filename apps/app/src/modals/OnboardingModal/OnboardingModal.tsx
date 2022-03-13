@@ -1,9 +1,10 @@
 import React, {useMemo, useRef} from 'react';
-import { ModalFC, withModal } from "../utils";
-import { useTailwind } from "tailwind-rn/dist";
-import {Animated, FlatList, Text, useWindowDimensions, View} from "react-native";
-import { Permissions } from "../../utils/permissions";
-import { Page1, Page2, Page3 } from './pages';
+import {ModalFC, withModal} from "../utils";
+import {useTailwind} from "tailwind-rn/dist";
+import {Animated, FlatList, SafeAreaView, useWindowDimensions, View} from "react-native";
+import {Permissions} from "../../utils/permissions";
+import {Page1, Page2, Page3} from './pages';
+import {saveToStorage, StorageKeys} from "../../utils/storage";
 
 const OnboardingModal: ModalFC = ({ navigation }) => {
   const tailwind = useTailwind();
@@ -28,32 +29,35 @@ const OnboardingModal: ModalFC = ({ navigation }) => {
 
   const handleLeaveOnboarding = () => {
     navigation.goBack();
+    saveToStorage(StorageKeys.hasBeenOnboarded, true);
   }
 
   return (
     <Animated.View style={[tailwind('w-full h-full'), bgStyle]}>
-      <FlatList
-        data={pages}
-        horizontal={true}
-        pagingEnabled={true}
-        bounces={true}
-        alwaysBounceHorizontal={true}
-        showsHorizontalScrollIndicator={true}
-        keyExtractor={(page) => page.id.toString()}
-        renderItem={({ item: { Component }, index }) => (
-          <View style={{ width, height }}>
-            <Component
-              pageIndex={index}
-              pageCount={pageCount}
-              handleClose={handleLeaveOnboarding}
-            />
-          </View>
-        )}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollOffset } } }],
-          { useNativeDriver: false },
-        )}
-      />
+      <SafeAreaView>
+        <FlatList
+          data={pages}
+          horizontal={true}
+          pagingEnabled={true}
+          bounces={true}
+          alwaysBounceHorizontal={true}
+          showsHorizontalScrollIndicator={true}
+          keyExtractor={(page) => page.id.toString()}
+          renderItem={({ item: { Component }, index }) => (
+            <View style={{ width, height }}>
+              <Component
+                pageIndex={index}
+                pageCount={pageCount}
+                handleClose={handleLeaveOnboarding}
+              />
+            </View>
+          )}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollOffset } } }],
+            { useNativeDriver: false },
+          )}
+        />
+      </SafeAreaView>
     </Animated.View>
   )
 }

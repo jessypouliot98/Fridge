@@ -6,16 +6,19 @@ import Icon from "../Icon/Icon";
 
 export type SearchFieldProps = {
   style?: StyleProp<ViewStyle>,
+  defaultValue?: string,
   onSubmit?: (searchTerm: string) => void,
 }
 
 const SearchField: React.FC<SearchFieldProps> = (props) => {
-  const { style, onSubmit } = props;
+  const { style, defaultValue, onSubmit } = props;
 
   const tailwind = useTailwind();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(defaultValue || '');
+  const [activeTerm, setActiveTerm] = useState(defaultValue || '');
 
   const handleSubmit = () => {
+    setActiveTerm(searchTerm);
     onSubmit && onSubmit(searchTerm);
   }
 
@@ -24,6 +27,7 @@ const SearchField: React.FC<SearchFieldProps> = (props) => {
       <TextInput
         style={tailwind('flex-1 h-12 px-4')}
         placeholder={'Search'}
+        defaultValue={searchTerm}
         onSubmitEditing={handleSubmit}
         onChangeText={(v) => setSearchTerm(v)}
       />
@@ -32,6 +36,7 @@ const SearchField: React.FC<SearchFieldProps> = (props) => {
           tailwind(clsx('rounded-full h-12 w-12 flex justify-center items-center', pressed ? 'bg-red-700' : 'bg-red-500')),
           { transform: [{ scale: 0.75 }] }
         ]}
+        disabled={activeTerm === searchTerm}
         onPress={handleSubmit}
       >
         <Icon name={'search'} />
