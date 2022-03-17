@@ -16,6 +16,7 @@ const SignUpScreen: ScreenFC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   return (
     <View style={tailwind('p-4 flex justify-center items-center w-full h-full bg-gray-900')}>
@@ -45,6 +46,13 @@ const SignUpScreen: ScreenFC = () => {
             styles={{ container: tailwind('mb-2 border border-gray-100') }}
             placeholder={'password'}
             onChange={(v) => setPassword(v)}
+          />
+
+          <Input
+            type={'date'}
+            styles={{ input: tailwind('flex justify-center items-center'), container: tailwind('mb-2 border border-gray-100') }}
+            placeholder={'birthday'}
+            onChange={(v) => setBirthday(v)}
           />
 
           <Button style={tailwind('mt-4')} onPress={() => dispatch(signUp({ name, email, password }))}>

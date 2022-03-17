@@ -8,7 +8,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useRootSelector } from "../hooks";
 import { selectIsLoggedIn } from "../store/account/selectors";
 import { Tab } from "../tabs/types";
-import TabBar from "./TabBar/TabBar";
 import {Platform} from "react-native";
 
 const TabNavigator = createBottomTabNavigator();

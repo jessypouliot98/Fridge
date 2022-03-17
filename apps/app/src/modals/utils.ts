@@ -33,7 +33,7 @@ export const withModal = <P>(Component: ModalFC<P>, statics: NavigationFCStatic)
 
   SuperComponent.open = (props) => {
     if (navigationRef.isReady()) {
-      (navigationRef.navigate as any)('ModalStack', {
+      navigationRef.navigate('ModalStack', {
         screen: route,
         params: props,
       });

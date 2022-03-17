@@ -152,11 +152,6 @@
 			"justifyContent": "center"
 		}
 	},
-	"justify-between": {
-		"style": {
-			"justifyContent": "space-between"
-		}
-	},
 	"overflow-hidden": {
 		"style": {
 			"overflow": "hidden"
@@ -375,10 +370,10 @@
 			"backgroundColor": "rgb(17 24 39 / var(--tw-bg-opacity))"
 		}
 	},
-	"bg-red-100": {
+	"bg-red-300": {
 		"style": {
 			"--tw-bg-opacity": 1,
-			"backgroundColor": "rgb(254 226 226 / var(--tw-bg-opacity))"
+			"backgroundColor": "rgb(252 165 165 / var(--tw-bg-opacity))"
 		}
 	},
 	"p-1": {

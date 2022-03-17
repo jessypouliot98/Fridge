@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, View, Text } from "react-native";
 import { ScreenFC, withScreen } from "../utils";
 import RecipeList from "../../components/RecipeList/RecipeList";
